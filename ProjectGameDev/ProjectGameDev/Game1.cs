@@ -12,6 +12,7 @@ namespace ProjectGameDev
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
+        
         Hero hero;
 
         public Game1()

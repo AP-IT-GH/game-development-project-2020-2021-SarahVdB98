@@ -15,13 +15,19 @@ namespace ProjectGameDev
         Animatie animatieR;
         Animatie animatieL;
         Animatie animatieStand;
+        Animatie jump;
         Animatie currentAnimation;
         private Vector2 positie;
+        private Vector2 startPos;
         IInputReader inputReader;
+        float gravity = 0.1f;
 
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
+            positie = new Vector2(0, 250);
+            startPos = new Vector2(0, 250);
+            
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
             {
@@ -36,18 +42,32 @@ namespace ProjectGameDev
 
             animatieStand = new Animatie();
             animatieStand.AddFrame(new AnimationFrame(new Rectangle(768, 0, 256, 256)));
-            positie = new Vector2(10, 250);
+
+            jump = new Animatie();
+            jump.AddFrame(new AnimationFrame(new Rectangle(1536, 256, 256, 256)));
+
             this.inputReader = reader;
-            
+            currentAnimation = animatieStand;
+
+
         }
 
        public void Update(GameTime gameTime)
         {
             KeyboardState stateKey = Keyboard.GetState();
-            var direction = inputReader.ReadInput();
             
-            direction *= 4;
+            var direction = inputReader.ReadInput();
             positie += direction;
+
+            if (positie.Y < startPos.Y)
+            {
+                positie.Y += gravity;
+                gravity += 0.1f;
+                if (gravity > 2f)
+                {
+                    gravity = 2f;
+                }
+            }
             if (stateKey.IsKeyDown(Keys.Right))
             {
                 currentAnimation = animatieR;
@@ -55,6 +75,19 @@ namespace ProjectGameDev
             else if (stateKey.IsKeyDown(Keys.Left))
             {
                 currentAnimation = animatieL;
+            }
+            else if (stateKey.IsKeyDown(Keys.Space))
+            {
+                currentAnimation = jump;
+            }
+            else if (currentAnimation == jump && positie.Y < startPos.Y)
+            {
+                    positie.Y += gravity;
+                    gravity += 0.1f;
+                    if (gravity > 2f)
+                    {
+                        gravity = 2f;
+                    }
             }
             else
             {

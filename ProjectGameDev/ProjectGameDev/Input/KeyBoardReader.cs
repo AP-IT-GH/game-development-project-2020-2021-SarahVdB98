@@ -16,12 +16,15 @@ namespace ProjectGameDev.Input
             if (state.IsKeyDown(Keys.Left))
             {
                 direction = new Vector2(-1, 0);
-                
             }
-
             if (state.IsKeyDown(Keys.Right))
             {
                 direction = new Vector2(1, 0);
+            }
+            
+            if (state.IsKeyDown(Keys.Space))
+            {
+                direction = new Vector2(0, -15);
             }
 
             return direction;
