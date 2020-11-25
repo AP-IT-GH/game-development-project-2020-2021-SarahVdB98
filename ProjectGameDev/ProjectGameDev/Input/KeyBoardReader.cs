@@ -24,8 +24,9 @@ namespace ProjectGameDev.Input
             
             if (state.IsKeyDown(Keys.Space))
             {
-                direction = new Vector2(0, -15);
+                direction = new Vector2(0, -5);
             }
+            direction *= 3;
 
             return direction;
         }

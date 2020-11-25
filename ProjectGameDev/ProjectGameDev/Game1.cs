@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Input;
 using ProjectGameDev.Input;
 using ProjectGameDev.Interfaces;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ProjectGameDev
 {
@@ -12,8 +14,12 @@ namespace ProjectGameDev
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
+        private Texture2D brickTexture;
         
         Hero hero;
+        Brick brick;
+        CollisionManager collisionManager;
+
 
         public Game1()
         {
@@ -25,7 +31,7 @@ namespace ProjectGameDev
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+            collisionManager = new CollisionManager();
 
             base.Initialize();
         }
@@ -36,6 +42,7 @@ namespace ProjectGameDev
 
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
+            brickTexture = Content.Load<Texture2D>("wall");
 
             InitializeGameObjects();
         }
@@ -43,6 +50,7 @@ namespace ProjectGameDev
         private void InitializeGameObjects()
         {
             hero = new Hero(texture, new KeyBoardReader());
+            brick = new Brick(brickTexture, new Vector2(120, 200));
         }
 
 
@@ -52,9 +60,36 @@ namespace ProjectGameDev
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            
             // TODO: Add your update logic here
             hero.Update(gameTime);
+            brick.Update();
+            if (collisionManager.CheckCollision(hero.CollisionRectangle, brick.CollisionRectangle))
+            {
+               
+                if (hero.positie.X < brick.Positie.X-50)
+                {
+                    hero.positie.X -= 3;
+                }
+                else if (hero.positie.X > brick.Positie.X)
+                {
+                    hero.positie.X += 3;
+                }
+                if (hero.positie.X > brick.Positie.X - 50 && hero.positie.X < brick.Positie.X)
+                {
+                    hero.positie.Y = brick.Positie.Y-90 ;
+                }
 
+
+
+
+
+
+
+
+            }
+           
             base.Update(gameTime);
         }
 
@@ -63,6 +98,7 @@ namespace ProjectGameDev
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
             hero.Draw(_spriteBatch);
+            brick.Draw(_spriteBatch);
             _spriteBatch.End();
             
 

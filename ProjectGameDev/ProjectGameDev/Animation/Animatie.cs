@@ -31,7 +31,7 @@ namespace ProjectGameDev.Animation
             CurrentFrame = frames[counter];
 
             frameMovement += CurrentFrame.SourceRectangle.Width * gameTime.ElapsedGameTime.TotalSeconds;
-            if (frameMovement >= CurrentFrame.SourceRectangle.Width/10)
+            if (frameMovement >= CurrentFrame.SourceRectangle.Width/30)
             {
                 counter++;
                 frameMovement = 0;

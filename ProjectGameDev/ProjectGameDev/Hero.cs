@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
-    class Hero : IGameObject
+    class Hero : IGameObject, ICollision
     {
         Texture2D heroTexture;
         Animatie animatieR;
@@ -17,15 +17,21 @@ namespace ProjectGameDev
         Animatie animatieStand;
         Animatie jump;
         Animatie currentAnimation;
-        private Vector2 positie;
-        private Vector2 startPos;
+
+        public Vector2 positie;
+        public Vector2 startPos;
+
         IInputReader inputReader;
+
         float gravity = 0.1f;
+        public Rectangle CollisionRectangle { get; set; }
+        private Rectangle _collisionRectangle;
 
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
             positie = new Vector2(0, 250);
+           
             startPos = new Vector2(0, 250);
             
             animatieR = new Animatie();
@@ -46,6 +52,9 @@ namespace ProjectGameDev
             jump = new Animatie();
             jump.AddFrame(new AnimationFrame(new Rectangle(1536, 256, 256, 256)));
 
+            
+            CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 102, 102);
+
             this.inputReader = reader;
             currentAnimation = animatieStand;
 
@@ -59,6 +68,9 @@ namespace ProjectGameDev
             var direction = inputReader.ReadInput();
             positie += direction;
 
+            if (positie.X < 0){ positie.X = 0;}
+            if (positie.X > 725){positie.X = 725;}
+            if (positie.Y < 0) {positie.Y = 0; }
             if (positie.Y < startPos.Y)
             {
                 positie.Y += gravity;
@@ -93,12 +105,22 @@ namespace ProjectGameDev
             {
                 currentAnimation = animatieStand;
             }
+
             currentAnimation.Update(gameTime);
+            _collisionRectangle.X = (int)positie.X;
+            _collisionRectangle.Y = (int)positie.Y;
+            _collisionRectangle.Width = 85;
+            _collisionRectangle.Height = 90;
+            CollisionRectangle = _collisionRectangle;
+
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(heroTexture, positie, currentAnimation.CurrentFrame.SourceRectangle , Color.White,0,new Vector2(0,0), 0.4f, SpriteEffects.None,0);
         }
+
+        
     }
 }
