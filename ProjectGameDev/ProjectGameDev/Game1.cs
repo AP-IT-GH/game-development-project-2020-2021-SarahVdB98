@@ -67,7 +67,6 @@ namespace ProjectGameDev
             brick.Update();
             if (collisionManager.CheckCollision(hero.CollisionRectangle, brick.CollisionRectangle))
             {
-               
                 if (hero.positie.X < brick.Positie.X-50)
                 {
                     hero.positie.X -= 3;
@@ -76,26 +75,14 @@ namespace ProjectGameDev
                 {
                     hero.positie.X += 3;
                 }
-                if (hero.positie.X > brick.Positie.X - 50 )
+                else if (hero.positie.Y < brick.Positie.Y-50)
                 {
-                    if (hero.positie.Y < brick.Positie.Y)
-                    {
-                        hero.positie.Y = brick.Positie.Y - 90;
-                    }
-                    if (hero.positie.Y >= brick.Positie.Y)
-                    {
-                        hero.positie.Y += 14;
-                    }
-
+                    hero.positie.Y = brick.Positie.Y-90;
                 }
-
-
-
-
-
-
-
-
+                else if (hero.positie.Y > brick.Positie.Y-50)
+                {
+                    hero.positie.Y += 14;
+                }
             }
            
             base.Update(gameTime);
