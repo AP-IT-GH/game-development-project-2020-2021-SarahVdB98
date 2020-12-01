@@ -76,9 +76,17 @@ namespace ProjectGameDev
                 {
                     hero.positie.X += 3;
                 }
-                if (hero.positie.X > brick.Positie.X - 50 && hero.positie.X < brick.Positie.X)
+                if (hero.positie.X > brick.Positie.X - 50 )
                 {
-                    hero.positie.Y = brick.Positie.Y-90 ;
+                    if (hero.positie.Y < brick.Positie.Y)
+                    {
+                        hero.positie.Y = brick.Positie.Y - 90;
+                    }
+                    if (hero.positie.Y >= brick.Positie.Y)
+                    {
+                        hero.positie.Y += 14;
+                    }
+
                 }
 
 
