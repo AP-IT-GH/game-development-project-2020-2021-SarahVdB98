@@ -30,9 +30,9 @@ namespace ProjectGameDev
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
-            positie = new Vector2(0, 250);
+            positie = new Vector2(0, 375);
            
-            startPos = new Vector2(0, 250);
+            startPos = new Vector2(0, 375);
             
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
@@ -70,7 +70,9 @@ namespace ProjectGameDev
 
             if (positie.X < 0){ positie.X = 0;}
             if (positie.X > 725){positie.X = 725;}
+            
             if (positie.Y < 0) {positie.Y = 0; }
+
             if (positie.Y < startPos.Y)
             {
                 positie.Y += gravity;

@@ -16,6 +16,7 @@ namespace ProjectGameDev
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
         private Texture2D brickTexture;
+        private Texture2D background;
         private Brick[] brickArr = new Brick[5];
         
         Hero hero;
@@ -45,7 +46,8 @@ namespace ProjectGameDev
 
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
-            brickTexture = Content.Load<Texture2D>("wall");
+            brickTexture = Content.Load<Texture2D>("blok");
+            background = Content.Load<Texture2D>("background2");
 
             InitializeGameObjects();
         }
@@ -57,7 +59,7 @@ namespace ProjectGameDev
             int Xpos = 50;
             for (int i = 0; i < 5; i++)
             {
-                brickArr[i] = new Brick(brickTexture, new Vector2(Xpos, 200));
+                brickArr[i] = new Brick(brickTexture, new Vector2(Xpos, 300));
             }
         }
 
@@ -68,12 +70,12 @@ namespace ProjectGameDev
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             hero.Update(gameTime);
-            level.steen.Update();
+
             if (collisionManager.CheckCollision(hero.CollisionRectangle, level.steen.CollisionRectangle))
             {
                 if (hero.CollisionRectangle.X < level.steen.CollisionRectangle.X)
                 {
-                    hero.positie -= new Vector2(1.5f, 0) * 2;
+                    hero.positie += new Vector2(-1.5f, 0) * 2;
                 }
                 if (hero.CollisionRectangle.X > level.steen.CollisionRectangle.X)
                 {
@@ -85,7 +87,7 @@ namespace ProjectGameDev
                 }
                 if (hero.CollisionRectangle.Y > level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie += new Vector2(1.5f, 6.5f) * 2; ;
+                    hero.positie += new Vector2(1.5f, 8f) * 2; 
                 }
 
             }
@@ -97,6 +99,7 @@ namespace ProjectGameDev
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             hero.Draw(_spriteBatch);
             level.DrawWorld(_spriteBatch);
             _spriteBatch.End();

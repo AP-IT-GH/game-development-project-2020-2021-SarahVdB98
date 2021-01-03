@@ -34,13 +34,13 @@ namespace ProjectGameDev.LevelDesign
 
         private void InitializeContent()
         {
-            texture = content.Load<Texture2D>("wall");
+            texture = content.Load<Texture2D>("blok");
         }
 
 
         public void CreateWorld()
         {
-            steen = new Brick(texture, new Vector2(128, 200));
+            steen = new Brick(texture, new Vector2(128, 325));
 
             //for (int x = 0; x < 5; x++)
             //{
