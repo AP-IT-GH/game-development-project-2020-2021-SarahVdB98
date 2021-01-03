@@ -54,38 +54,42 @@ namespace ProjectGameDev
         {
             
             hero = new Hero(texture, new KeyBoardReader());
-            int Xpos = 120;
+            int Xpos = 50;
             for (int i = 0; i < 5; i++)
             {
                 brickArr[i] = new Brick(brickTexture, new Vector2(Xpos, 200));
-                Xpos += 50;
             }
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-            
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             hero.Update(gameTime);
             level.steen.Update();
             if (collisionManager.CheckCollision(hero.CollisionRectangle, level.steen.CollisionRectangle))
             {
-                if (hero.positie.X < level.steen.Positie.X)
+                if (hero.CollisionRectangle.X < level.steen.CollisionRectangle.X)
                 {
-                    hero.positie.X -= 2;
+                    hero.positie -= new Vector2(1.5f, 0) * 2;
                 }
-                if (hero.positie.Y < level.steen.Positie.Y - 90)
+                if (hero.CollisionRectangle.X > level.steen.CollisionRectangle.X)
                 {
-                    hero.positie.Y = level.steen.Positie.Y - 90;
+                    hero.positie += new Vector2(1.5f, 0) * 2;
                 }
-                else if (hero.positie.Y > level.steen.Positie.Y-90)
+                if (hero.CollisionRectangle.Y < level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie.Y -= 2 ;
+                    hero.positie += new Vector2(1.5f, -1) * 2;
                 }
+                if (hero.CollisionRectangle.Y > level.steen.CollisionRectangle.Y)
+                {
+                    hero.positie += new Vector2(1.5f, 6.5f) * 2; ;
+                }
+
             }
-            //}
+        
             base.Update(gameTime);
         }
 

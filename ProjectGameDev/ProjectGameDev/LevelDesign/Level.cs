@@ -40,7 +40,7 @@ namespace ProjectGameDev.LevelDesign
 
         public void CreateWorld()
         {
-            steen = new Brick(texture, new Vector2(128, 250));
+            steen = new Brick(texture, new Vector2(128, 200));
 
             //for (int x = 0; x < 5; x++)
             //{

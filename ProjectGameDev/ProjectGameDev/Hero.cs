@@ -109,7 +109,7 @@ namespace ProjectGameDev
             currentAnimation.Update(gameTime);
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;
-            _collisionRectangle.Width = 85;
+            _collisionRectangle.Width = 90;
             _collisionRectangle.Height = 90;
             CollisionRectangle = _collisionRectangle;
 
