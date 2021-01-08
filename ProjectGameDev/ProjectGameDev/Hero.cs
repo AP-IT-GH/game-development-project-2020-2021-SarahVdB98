@@ -20,8 +20,9 @@ namespace ProjectGameDev
 
         public Vector2 positie;
         public Vector2 startPos;
+        public Vector2 Velocity;
 
-        IInputReader inputReader;
+        public IInputReader inputReader;
 
         float gravity = 0.1f;
         public Rectangle CollisionRectangle { get; set; }
@@ -33,7 +34,7 @@ namespace ProjectGameDev
             positie = new Vector2(0, 375);
            
             startPos = new Vector2(0, 375);
-            
+            Velocity = new Vector2();
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
             {
@@ -111,7 +112,7 @@ namespace ProjectGameDev
             currentAnimation.Update(gameTime);
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;
-            _collisionRectangle.Width = 90;
+            _collisionRectangle.Width = 70;
             _collisionRectangle.Height = 90;
             CollisionRectangle = _collisionRectangle;
 

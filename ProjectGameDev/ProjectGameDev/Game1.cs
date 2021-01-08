@@ -18,7 +18,8 @@ namespace ProjectGameDev
         private Texture2D brickTexture;
         private Texture2D background;
         private Brick[] brickArr = new Brick[5];
-        
+
+
         Hero hero;
         Level level;
         CollisionManager collisionManager;
@@ -69,29 +70,28 @@ namespace ProjectGameDev
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            hero.Update(gameTime);
-
+            
             if (collisionManager.CheckCollision(hero.CollisionRectangle, level.steen.CollisionRectangle))
             {
                 if (hero.CollisionRectangle.X < level.steen.CollisionRectangle.X)
                 {
-                    hero.positie += new Vector2(-1.5f, 0) * 2;
+                    hero.inputReader.canMoveRight = false;
                 }
                 if (hero.CollisionRectangle.X > level.steen.CollisionRectangle.X)
                 {
-                    hero.positie += new Vector2(1.5f, 0) * 2;
+                    hero.inputReader.canMoveLeft = false;
                 }
                 if (hero.CollisionRectangle.Y < level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie += new Vector2(1.5f, -1) * 2;
+                    hero.positie += new Vector2(0, -1) * 2;
                 }
                 if (hero.CollisionRectangle.Y > level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie += new Vector2(1.5f, 8f) * 2; 
+                    hero.positie += new Vector2(0, 8f) * 2; ;
                 }
-
+                
             }
-        
+            hero.Update(gameTime);
             base.Update(gameTime);
         }
 

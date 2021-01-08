@@ -9,22 +9,41 @@ namespace ProjectGameDev.Input
 {
     public class KeyBoardReader : IInputReader
     {
+        public bool canMoveLeft { get; set; } = true;
+        public bool canMoveRight { get; set; } = true;
+        public bool canMoveUp { get; set; } = true;
+        public bool canMoveDown { get; set; } = false;
+
         public Vector2 ReadInput()
         {
             var direction = Vector2.Zero;
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Left))
             {
-                direction = new Vector2(-1, 0);
+                if (canMoveLeft)
+                {
+                    direction = new Vector2(-1, 0);
+                }
+                canMoveLeft = true;
             }
             if (state.IsKeyDown(Keys.Right))
             {
-                direction = new Vector2(1, 0);
+                if (canMoveRight)
+                {
+                    direction = new Vector2(1, 0);
+                }
+                canMoveRight = true;
             }
             
             if (state.IsKeyDown(Keys.Space))
             {
-                direction = new Vector2(0, -5);
+                if (canMoveUp)
+                {
+                    direction = new Vector2(0, -5);
+                }
+                canMoveUp = true;
+                canMoveLeft = true;
+                canMoveRight = true;
             }
             direction *= 3;
 
