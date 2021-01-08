@@ -83,11 +83,11 @@ namespace ProjectGameDev
                 }
                 if (hero.CollisionRectangle.Y < level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie += new Vector2(0, -1) * 2;
+                    hero.inputReader.canMoveDown = false;
                 }
                 if (hero.CollisionRectangle.Y > level.steen.CollisionRectangle.Y)
                 {
-                    hero.positie += new Vector2(0, 8f) * 2; ;
+                    hero.inputReader.canMoveUp = false;
                 }
                 
             }

@@ -42,9 +42,13 @@ namespace ProjectGameDev.Input
                     direction = new Vector2(0, -5);
                 }
                 canMoveUp = true;
-                canMoveLeft = true;
-                canMoveRight = true;
+                canMoveDown = false;
             }
+            if (canMoveDown)
+            {
+                direction = new Vector2(0, 5);
+            }
+
             direction *= 3;
 
             return direction;
