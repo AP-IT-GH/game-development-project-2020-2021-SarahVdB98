@@ -11,17 +11,18 @@ namespace ProjectGameDev.LevelDesign
     {
         public Texture2D texture;
         public static int rows = 6;
-        public static int columns = 7;
+        public static int columns = 8;
         
 
         public byte[,] tileArray = new Byte[,]
         {
-            {0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0 },
-            {0,0,0,0,1,1,1 },
-            {0,0,1,1,0,0,0 },
-            {0,1,1,0,0,1,1 },
-            {0,0,0,0,0,0,0 },
+            
+            {0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,1,1,1 },
+            {0,0,0,1,1,0,0,0 },
+            {0,0,1,1,0,0,1,1 },
+            {0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0 }
 
 
         };
@@ -53,7 +54,7 @@ namespace ProjectGameDev.LevelDesign
                 {
                     if (tileArray[x, y] == 1)
                     {
-                        blokArray[x, y] = new Brick(texture, new Vector2(y *35 , x*80));
+                        blokArray[x, y] = new Brick(texture, new Vector2(y *40 , x*115));
                     }
                 }
             }
