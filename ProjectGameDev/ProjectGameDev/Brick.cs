@@ -19,8 +19,7 @@ namespace ProjectGameDev
         {
             BrickTexture = brick;
             Positie = vector2;
-            CollisionRectangle = new Rectangle((int)Positie.X, (int)Positie.Y, 26, 35);
-            
+            CollisionRectangle = new Rectangle((int)Positie.X, (int)Positie.Y, 18, 35);
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -17,7 +17,6 @@ namespace ProjectGameDev
         private Texture2D texture;
         private Texture2D brickTexture;
         private Texture2D background;
-        private Brick[] brickArr = new Brick[5];
 
 
         Hero hero;
@@ -50,6 +49,7 @@ namespace ProjectGameDev
             brickTexture = Content.Load<Texture2D>("blok");
             background = Content.Load<Texture2D>("background2");
 
+
             InitializeGameObjects();
         }
 
@@ -57,37 +57,46 @@ namespace ProjectGameDev
         {
             
             hero = new Hero(texture, new KeyBoardReader());
-            int Xpos = 50;
-            for (int i = 0; i < 5; i++)
-            {
-                brickArr[i] = new Brick(brickTexture, new Vector2(Xpos, 300));
-            }
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-
+            
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
-            if (collisionManager.CheckCollision(hero.CollisionRectangle, level.steen.CollisionRectangle))
+            for (int x = 0; x < 5; x++)
             {
-                if (hero.CollisionRectangle.X < level.steen.CollisionRectangle.X)
+                for (int y = 0; y < 6; y++)
                 {
-                    hero.inputReader.canMoveRight = false;
-                }
-                if (hero.CollisionRectangle.X > level.steen.CollisionRectangle.X)
-                {
-                    hero.inputReader.canMoveLeft = false;
-                }
-                if (hero.CollisionRectangle.Y < level.steen.CollisionRectangle.Y)
-                {
-                    hero.inputReader.canMoveDown = false;
-                }
-                if (hero.CollisionRectangle.Y > level.steen.CollisionRectangle.Y)
-                {
-                    hero.inputReader.canMoveUp = false;
+                    if (level.tileArray[x, y] == 1)
+                    {
+                        if (collisionManager.CheckCollision(hero.CollisionRectangle, level.blokArray[x, y].CollisionRectangle))
+                        {
+                            if (hero.CollisionRectangle.X + 30 > level.blokArray[x, y].CollisionRectangle.X)
+                            {
+                                Debug.WriteLine("Rechts v T.");
+                                hero.inputReader.canMoveRight = false;
+                            }
+                            if (hero.CollisionRectangle.X + 30 < level.blokArray[x, y].CollisionRectangle.X) 
+                            {
+                                Debug.WriteLine("Links v T.");
+                                hero.inputReader.canMoveLeft = false;
+                            }
+
+                            if (hero.CollisionRectangle.Y + 85 < level.blokArray[x, y].CollisionRectangle.Y)
+                            {
+                                Debug.WriteLine("Erop");
+                                hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Top - hero.CollisionRectangle.Height;
+                            }
+                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y)
+                            {
+                                Debug.WriteLine("Eronder");
+                                hero.inputReader.canMoveUp = false;
+                            }
+                        }
+                        
+                    }
                 }
                 
             }

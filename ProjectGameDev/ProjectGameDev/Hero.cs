@@ -69,7 +69,7 @@ namespace ProjectGameDev
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            if (positie.X < 0){ positie.X = 0;}
+            if (positie.X < -30){ positie.X = -30;}
             if (positie.X > 725){positie.X = 725;}
             
             if (positie.Y < 0) {positie.Y = 0; }

@@ -32,7 +32,7 @@ namespace ProjectGameDev.Input
                 {
                     direction = new Vector2(1, 0);
                 }
-                canMoveRight = true;
+                canMoveRight = true;                
             }
             
             if (state.IsKeyDown(Keys.Space))
@@ -40,13 +40,10 @@ namespace ProjectGameDev.Input
                 if (canMoveUp)
                 {
                     direction = new Vector2(0, -5);
+                    
                 }
                 canMoveUp = true;
-                canMoveDown = false;
-            }
-            if (canMoveDown)
-            {
-                direction = new Vector2(0, 5);
+                canMoveRight = true; canMoveLeft = true;
             }
 
             direction *= 3;
