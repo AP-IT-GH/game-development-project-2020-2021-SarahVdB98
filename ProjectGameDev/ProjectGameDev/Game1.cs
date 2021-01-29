@@ -46,7 +46,6 @@ namespace ProjectGameDev
 
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
-            brickTexture = Content.Load<Texture2D>("blok");
             background = Content.Load<Texture2D>("background2");
 
 
@@ -65,41 +64,7 @@ namespace ProjectGameDev
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            for (int x = 0; x < 5; x++)
-            {
-                for (int y = 0; y < 6; y++)
-                {
-                    if (level.tileArray[x, y] == 1)
-                    {
-                        if (collisionManager.CheckCollision(hero.CollisionRectangle, level.blokArray[x, y].CollisionRectangle))
-                        {
-                            if (hero.CollisionRectangle.X + 30 > level.blokArray[x, y].CollisionRectangle.X)
-                            {
-                                Debug.WriteLine("Rechts v T.");
-                                hero.inputReader.canMoveRight = false;
-                            }
-                            if (hero.CollisionRectangle.X + 30 < level.blokArray[x, y].CollisionRectangle.X) 
-                            {
-                                Debug.WriteLine("Links v T.");
-                                hero.inputReader.canMoveLeft = false;
-                            }
-
-                            if (hero.CollisionRectangle.Y + 85 < level.blokArray[x, y].CollisionRectangle.Y)
-                            {
-                                Debug.WriteLine("Erop");
-                                hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Top - hero.CollisionRectangle.Height;
-                            }
-                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y)
-                            {
-                                Debug.WriteLine("Eronder");
-                                hero.inputReader.canMoveUp = false;
-                            }
-                        }
-                        
-                    }
-                }
-                
-            }
+            collisionManager.collisionAction(level, hero);
             hero.Update(gameTime);
             base.Update(gameTime);
         }
