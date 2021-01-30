@@ -34,6 +34,7 @@ namespace ProjectGameDev
         Enemy enemy;
         Level level;
         CollisionManager collisionManager;
+        Camera camera;
 
         public Game1()
         {
@@ -47,8 +48,8 @@ namespace ProjectGameDev
         {
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
-            
-            gameState = new GameState();
+            camera = new Camera(GraphicsDevice.Viewport);
+            //gameState = new GameState();
             level = new Level(Content);
             level.CreateWorld();
             
@@ -80,18 +81,24 @@ namespace ProjectGameDev
             
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            collisionManager.collisionAction(level, hero);
+           
             collisionManager.collisionAction(hero, enemy);
+            collisionManager.collisionAction(level, hero);
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
+            //camera.Update(gameTime, hero);
+
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(/* SpriteSortMode.Deferred,
+                BlendState.AlphaBlend,
+                null, null, null, null,
+                camera.transform*/);
            
 
             if (gameState == GameState.Start)
@@ -102,8 +109,9 @@ namespace ProjectGameDev
             if (gameState == GameState.Game)
             {
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-                enemy.Draw(_spriteBatch);
+                
                 hero.Draw(_spriteBatch);
+                enemy.Draw(_spriteBatch);
                 level.DrawWorld(_spriteBatch);
             }
             if (gameState == GameState.Uitleg)

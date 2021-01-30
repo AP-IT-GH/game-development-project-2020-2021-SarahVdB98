@@ -69,12 +69,11 @@ namespace ProjectGameDev
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            if (positie.X < -30){ positie.X = -30;}
-            if (positie.X > 725){positie.X = 725;}
+            if (positie.X < 0){ positie.X = 0;}
             
             if (positie.Y < 0) {positie.Y = 0; }
 
-            if (positie.Y < startPos.Y)
+            if (positie.Y < 500)
             {
                 positie.Y += gravity;
                 gravity += 0.1f;
@@ -82,6 +81,10 @@ namespace ProjectGameDev
                 {
                     gravity = 2f;
                 }
+                //if (positie.Y > 450)
+                //{
+                //    Game1.gameState = GameState.Dead;
+                //}
             }
             if (stateKey.IsKeyDown(Keys.Right))
             {

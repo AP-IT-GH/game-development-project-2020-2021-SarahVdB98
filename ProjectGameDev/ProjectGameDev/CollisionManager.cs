@@ -51,33 +51,28 @@ namespace ProjectGameDev
 
         public void collisionAction(Hero hero, Enemy enemy)
         {
-
             if (CheckCollision(hero.CollisionRectangle, enemy.CollisionRectangle))
             {
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < enemy.CollisionRectangle.Y)
                 {
-                    hero.positie.Y = enemy.CollisionRectangle.Top - hero.CollisionRectangle.Height;
                     enemy.positie = new Vector2(-100, -100);
                 }
                 //als je er niet bovenop staat
                 //rechts ertegen
-                else if (hero.CollisionRectangle.X + 20 > enemy.CollisionRectangle.X)
+                else if (hero.CollisionRectangle.X + 80 > enemy.CollisionRectangle.X)
                 {
-                    hero.inputReader.canMoveLeft = false;
                     Game1.gameState = GameState.Dead;
                 }
                 //links ertegen
-                else if (hero.CollisionRectangle.X + 20 < enemy.CollisionRectangle.X)
+                else if (hero.CollisionRectangle.X + 80 < enemy.CollisionRectangle.X)
                 {
-                    hero.inputReader.canMoveRight = false;
                     Game1.gameState = GameState.Dead;
-
                 }
                 // als je eronder zit
                 if (hero.CollisionRectangle.Y > enemy.CollisionRectangle.Y)
                 {
-                    hero.inputReader.canMoveUp = false;
+                    Game1.gameState = GameState.Dead;
                 }
             }
         
