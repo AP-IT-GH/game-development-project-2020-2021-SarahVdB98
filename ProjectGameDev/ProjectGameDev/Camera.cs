@@ -7,6 +7,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
+    //https://www.youtube.com/watch?v=pin8_ZfBgq0&t=514s
     class Camera
     {
         public Matrix transform;

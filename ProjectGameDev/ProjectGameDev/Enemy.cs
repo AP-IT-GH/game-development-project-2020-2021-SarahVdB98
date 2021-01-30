@@ -23,8 +23,8 @@ namespace ProjectGameDev
         public Enemy(Texture2D texture)
         {
             enemyTexture = texture;
-            positie = new Vector2(200, 356);
-            startPos = new Vector2(200, 356);
+            startPos = new Vector2(350, 356);
+            positie = startPos;
             rect.Width = 550;
             rect.Height = 991;
             CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 10, 10);
@@ -35,8 +35,8 @@ namespace ProjectGameDev
             
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;
-            _collisionRectangle.Width = 10;
-            _collisionRectangle.Height = 10;
+            _collisionRectangle.Width = 25;
+            _collisionRectangle.Height = 25;
             CollisionRectangle = _collisionRectangle;
 
 

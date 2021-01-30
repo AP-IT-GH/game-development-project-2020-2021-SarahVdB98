@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectGameDev.Animation;
+using ProjectGameDev.Input;
 using ProjectGameDev.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
-    class Hero : IGameObject, ICollision
+    class Hero : IGameObject, ICollision, ITransform
     {
         Texture2D heroTexture;
         Animatie animatieR;
@@ -18,23 +19,30 @@ namespace ProjectGameDev
         Animatie jump;
         Animatie currentAnimation;
 
+        public bool canMoveLeft { get; set; } = true;
+        public bool canMoveRight { get; set; } = true;
+        public bool canMoveUp { get; set; } = true;
+        public bool canMoveDown { get; set; } = false;
+
+        public static bool IsGrounded = true;
+
+        public Vector2 position { get; set; }
         public Vector2 positie;
         public Vector2 startPos;
-        public Vector2 Velocity;
 
         public IInputReader inputReader;
 
         float gravity = 0.1f;
         public Rectangle CollisionRectangle { get; set; }
+
         private Rectangle _collisionRectangle;
 
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
-            positie = new Vector2(0, 365.5f);
-           
-            startPos = new Vector2(0, 365.5f);
-            Velocity = new Vector2();
+            startPos = new Vector2(150, 365.5f);
+            positie = startPos;
+            position = positie;
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
             {
@@ -61,30 +69,39 @@ namespace ProjectGameDev
 
 
         }
+        
 
-       public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
+            
             KeyboardState stateKey = Keyboard.GetState();
             
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            if (positie.X < 0){ positie.X = 0;}
             
             if (positie.Y < 0) {positie.Y = 0; }
 
             if (positie.Y < 500)
             {
+                if (positie.Y <= 364f)
+                {
+                    IsGrounded = false;
+                }
+                else
+                {
+                    IsGrounded = true;
+                }
                 positie.Y += gravity;
                 gravity += 0.1f;
                 if (gravity > 2f)
                 {
                     gravity = 2f;
                 }
-                //if (positie.Y > 450)
-                //{
-                //    Game1.gameState = GameState.Dead;
-                //}
+                if (positie.Y > 450)
+                {
+                    Game1.gameState = GameState.Dead;
+                }
             }
             if (stateKey.IsKeyDown(Keys.Right))
             {
@@ -97,9 +114,11 @@ namespace ProjectGameDev
             else if (stateKey.IsKeyDown(Keys.Space))
             {
                 currentAnimation = jump;
+                IsGrounded = false;
             }
             else if (currentAnimation == jump && positie.Y < startPos.Y)
             {
+                IsGrounded = false;
                     positie.Y += gravity;
                     gravity += 0.1f;
                     if (gravity > 2f)

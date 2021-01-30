@@ -49,7 +49,7 @@ namespace ProjectGameDev
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
             camera = new Camera(GraphicsDevice.Viewport);
-            //gameState = new GameState();
+            gameState = new GameState();
             level = new Level(Content);
             level.CreateWorld();
             
@@ -87,7 +87,7 @@ namespace ProjectGameDev
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
-            //camera.Update(gameTime, hero);
+            camera.Update(gameTime, hero);
 
             base.Update(gameTime);
         }
@@ -95,20 +95,22 @@ namespace ProjectGameDev
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Begin(/* SpriteSortMode.Deferred,
-                BlendState.AlphaBlend,
-                null, null, null, null,
-                camera.transform*/);
-           
 
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            _spriteBatch.End();
+
+
+            _spriteBatch.Begin(SpriteSortMode.Deferred,
+               BlendState.AlphaBlend,
+               null, null, null, null,
+               camera.transform);
             if (gameState == GameState.Start)
             {
                 
-                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             }
             if (gameState == GameState.Game)
             {
-                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 
                 hero.Draw(_spriteBatch);
                 enemy.Draw(_spriteBatch);
@@ -116,15 +118,12 @@ namespace ProjectGameDev
             }
             if (gameState == GameState.Uitleg)
             {
-                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             }
             if (gameState == GameState.Dead)
             {
-                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             }
             if (gameState == GameState.Pause)
             {
-                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             }
             _spriteBatch.End();
             if (gameState == GameState.Restart)
