@@ -49,6 +49,13 @@
 /processorParam:TextureFormat=Color
 /build:blok.png
 
+#begin DefaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:DefaultFont.spritefont
+
 #begin trump_iddle.png
 /importer:TextureImporter
 /processor:TextureProcessor

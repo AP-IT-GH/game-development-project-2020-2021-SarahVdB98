@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wvVxTw37cKiCGGlDicvD4NgJfv6N7ww+s3aE2WGcjTjCI9VB+PS6l2DPkstp6we625GFuyOJZuecq0j7puvXFw==",
+  "dgSpecHash": "UNMz/sML6W0Cl1tV0E5Cduboh0nLEE6k7kzn8RQevkZxkuh5jxwMDyX+PPCfvUqdnB61iPhcQIT6TBQAqgHYvg==",
   "success": true,
   "projectFilePath": "C:\\Users\\sarah\\Documents\\Github\\game-development-project-2020-2021-SarahVdB98\\ProjectGameDev\\ProjectGameDev\\ProjectGameDev.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "C:\\Users\\sarah\\.nuget\\packages\\microsoft.win32.registry\\4.0.0\\microsoft.win32.registry.4.0.0.nupkg.sha512",
     "C:\\Users\\sarah\\.nuget\\packages\\monogame.content.builder.task\\3.8.0.1641\\monogame.content.builder.task.3.8.0.1641.nupkg.sha512",
     "C:\\Users\\sarah\\.nuget\\packages\\monogame.framework.windowsdx\\3.8.0.1641\\monogame.framework.windowsdx.3.8.0.1641.nupkg.sha512",
+    "C:\\Users\\sarah\\.nuget\\packages\\monogame.ui.forms\\1.0.1\\monogame.ui.forms.1.0.1.nupkg.sha512",
     "C:\\Users\\sarah\\.nuget\\packages\\netstandard.library\\1.6.0\\netstandard.library.1.6.0.nupkg.sha512",
     "C:\\Users\\sarah\\.nuget\\packages\\runtime.native.system\\4.0.0\\runtime.native.system.4.0.0.nupkg.sha512",
     "C:\\Microsoft\\Xamarin\\NuGet\\runtime.native.system.io.compression\\4.1.0\\runtime.native.system.io.compression.4.1.0.nupkg.sha512",
@@ -126,5 +127,16 @@
     "C:\\Users\\sarah\\.nuget\\packages\\system.xml.xpath\\4.0.1\\system.xml.xpath.4.0.1.nupkg.sha512",
     "C:\\Users\\sarah\\.nuget\\packages\\system.xml.xpath.xdocument\\4.0.1\\system.xml.xpath.xdocument.4.0.1.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MonoGame.UI.Forms 1.0.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "MonoGame.UI.Forms",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
 }

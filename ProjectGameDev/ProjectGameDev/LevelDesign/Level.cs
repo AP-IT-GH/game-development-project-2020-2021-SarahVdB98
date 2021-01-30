@@ -16,15 +16,12 @@ namespace ProjectGameDev.LevelDesign
 
         public byte[,] tileArray = new Byte[,]
         {
-            
             {0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,1,1,1 },
-            {0,0,0,1,1,0,0,0 },
+            {0,0,0,1,0,1,1,1 },
+            {0,0,0,1,1,1,0,0 },
             {0,0,1,1,0,0,1,1 },
             {0,0,0,0,0,0,0,0 },
             {0,0,0,0,0,0,0,0 }
-
-
         };
 
         public Brick[,] blokArray = new Brick[rows, columns];
@@ -54,7 +51,8 @@ namespace ProjectGameDev.LevelDesign
                 {
                     if (tileArray[x, y] == 1)
                     {
-                        blokArray[x, y] = new Brick(texture, new Vector2(y *40 , x*115));
+                        blokArray[x, y] = new Brick(texture, new Vector2(y *50 , x*90
+                            ));
                     }
                 }
             }

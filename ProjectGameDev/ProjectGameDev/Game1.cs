@@ -7,6 +7,16 @@ using ProjectGameDev.LevelDesign;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+public enum GameState
+{
+    Start,
+    Uitleg,
+    Pause,
+    Game,
+    Dead,
+    Restart,
+    End
+}
 
 namespace ProjectGameDev
 {
@@ -17,6 +27,7 @@ namespace ProjectGameDev
         private Texture2D texture;
         private Texture2D brickTexture;
         private Texture2D background;
+        public static GameState gameState;
 
 
         Hero hero;
@@ -34,16 +45,18 @@ namespace ProjectGameDev
         {
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
+            
+            gameState = new GameState();
             level = new Level(Content);
             level.CreateWorld();
-
+            this.Components.Add(new MyControls(this));
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            gameState = GameState.Start;
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
             background = Content.Load<Texture2D>("background2");
@@ -73,11 +86,40 @@ namespace ProjectGameDev
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
-            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            hero.Draw(_spriteBatch);
-            level.DrawWorld(_spriteBatch);
+
+            if (gameState == GameState.Start)
+            {
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            }
+            if (gameState == GameState.Game)
+            {
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                hero.Draw(_spriteBatch);
+                level.DrawWorld(_spriteBatch);
+            }
+            if (gameState == GameState.Uitleg)
+            {
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            }
+            if (gameState == GameState.Dead)
+            {
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            }
+            if (gameState == GameState.Pause)
+            {
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            }
             _spriteBatch.End();
-            
+            if (gameState == GameState.Restart)
+            {
+                Initialize();
+                LoadContent();
+            }
+            if (gameState == GameState.End)
+            {
+                Exit();
+            }
+
             base.Draw(gameTime);
         }
     }
