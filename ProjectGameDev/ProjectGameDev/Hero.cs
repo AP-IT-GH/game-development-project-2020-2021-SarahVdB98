@@ -31,9 +31,9 @@ namespace ProjectGameDev
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
-            positie = new Vector2(0, 375);
+            positie = new Vector2(0, 365.5f);
            
-            startPos = new Vector2(0, 375);
+            startPos = new Vector2(0, 365.5f);
             Velocity = new Vector2();
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
@@ -53,7 +53,7 @@ namespace ProjectGameDev
             jump = new Animatie();
             jump.AddFrame(new AnimationFrame(new Rectangle(1536, 256, 256, 256)));
 
-            
+
             CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 102, 102);
 
             this.inputReader = reader;

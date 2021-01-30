@@ -22,6 +22,7 @@ namespace ProjectGameDev
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
                 Location = new Vector2(305, 200)
+
             };
             btn1.Clicked += Btn1_Clicked;
             Controls.Add(btn1);

@@ -10,18 +10,28 @@ namespace ProjectGameDev.LevelDesign
     class Level
     {
         public Texture2D texture;
-        public static int rows = 6;
-        public static int columns = 8;
+        public static int rows = 14;
+        public static int columns = 23;
         
 
         public byte[,] tileArray = new Byte[,]
         {
-            {0,0,0,0,0,0,0,0 },
-            {0,0,0,1,0,1,1,1 },
-            {0,0,0,1,1,1,0,0 },
-            {0,0,1,1,0,0,1,1 },
-            {0,0,0,0,0,0,0,0 },
-            {0,0,0,0,0,0,0,0 }
+
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }, 
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1 },
+            {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            {1,0,0,0,1,1,0,0,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0 },
+            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1 }
+
         };
 
         public Brick[,] blokArray = new Brick[rows, columns];
@@ -43,16 +53,13 @@ namespace ProjectGameDev.LevelDesign
 
         public void CreateWorld()
         {
-            //steen = new Brick(texture, new Vector2(128, 325));
-
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < columns; y++)
                 {
                     if (tileArray[x, y] == 1)
                     {
-                        blokArray[x, y] = new Brick(texture, new Vector2(y *50 , x*90
-                            ));
+                        blokArray[x, y] = new Brick(texture, new Vector2(y *35 , x*35));
                     }
                 }
             }
@@ -60,7 +67,6 @@ namespace ProjectGameDev.LevelDesign
 
         public void DrawWorld(SpriteBatch spritebatch)
         {
-            //steen.Draw(spritebatch);
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < columns; y++)

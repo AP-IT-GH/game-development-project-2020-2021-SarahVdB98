@@ -25,12 +25,13 @@ namespace ProjectGameDev
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
-        private Texture2D brickTexture;
+        private Texture2D enemyTexture;
         private Texture2D background;
         public static GameState gameState;
 
 
         Hero hero;
+        Enemy enemy;
         Level level;
         CollisionManager collisionManager;
 
@@ -39,6 +40,7 @@ namespace ProjectGameDev
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            this.Components.Add(new MyControls(this));
         }
 
         protected override void Initialize()
@@ -49,7 +51,7 @@ namespace ProjectGameDev
             gameState = new GameState();
             level = new Level(Content);
             level.CreateWorld();
-            this.Components.Add(new MyControls(this));
+            
             base.Initialize();
         }
 
@@ -59,6 +61,7 @@ namespace ProjectGameDev
             gameState = GameState.Start;
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
+            enemyTexture = Content.Load<Texture2D>("6-63763_politics-kim-jong-un-kim-jong-un-png");
             background = Content.Load<Texture2D>("background2");
 
 
@@ -67,8 +70,8 @@ namespace ProjectGameDev
 
         private void InitializeGameObjects()
         {
-            
             hero = new Hero(texture, new KeyBoardReader());
+            enemy = new Enemy(enemyTexture);
         }
 
 
@@ -78,7 +81,10 @@ namespace ProjectGameDev
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             collisionManager.collisionAction(level, hero);
+            collisionManager.collisionAction(hero, enemy);
+
             hero.Update(gameTime);
+            enemy.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -86,14 +92,17 @@ namespace ProjectGameDev
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Begin();
+           
 
             if (gameState == GameState.Start)
             {
+                
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             }
             if (gameState == GameState.Game)
             {
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                enemy.Draw(_spriteBatch);
                 hero.Draw(_spriteBatch);
                 level.DrawWorld(_spriteBatch);
             }
