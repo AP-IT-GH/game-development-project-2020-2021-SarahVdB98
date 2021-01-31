@@ -40,38 +40,38 @@ namespace ProjectGameDev
         {
             positie += velocity;
 
-            origin = new Vector2(enemyTexture.Width / 2, enemyTexture.Height / 2);
+           // origin = new Vector2(enemyTexture.Width / 2, enemyTexture.Height / 2);
 
-            if (distance <= 0)
-            {
-                right = true;
-                velocity.X = 1f;
-            }
-            else if(distance <= oldDistance)
-            {
-                right = false;
-                velocity.X = -1;
-            }
-            if (right){distance += 1;} else {distance -= 1;}
+           // if (distance <= 0)
+           // {
+           //     right = true;
+           //     velocity.X = 1f;
+           // }
+           // else if(distance <= oldDistance)
+           // {
+           //     right = false;
+           //     velocity.X = -1;
+           // }
+           // if (right){distance += 1;} else {distance -= 1;}
 
-           // MouseState mouse = Mouse.GetState();
-            mousedistance = 1000 - positie.X;
+           //// MouseState mouse = Mouse.GetState();
+           // mousedistance = 1000 - positie.X;
 
-            if (mousedistance >= -200 && mousedistance <=200)
-            {
-                if (mousedistance <-1)
-                {
-                    velocity.X = -1f;
-                }
-                else if(mousedistance > 1)
-                {
-                    velocity.X = 1f;
-                }
-                else if (mousedistance == 0)
-                {
-                    velocity.X = 0f;
-                }
-            }
+           // if (mousedistance >= -200 && mousedistance <=200)
+           // {
+           //     if (mousedistance <-1)
+           //     {
+           //         velocity.X = -1f;
+           //     }
+           //     else if(mousedistance > 1)
+           //     {
+           //         velocity.X = 1f;
+           //     }
+           //     else if (mousedistance == 0)
+           //     {
+           //         velocity.X = 0f;
+           //     }
+           // }
 
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;

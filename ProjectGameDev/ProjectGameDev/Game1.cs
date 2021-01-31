@@ -74,7 +74,7 @@ namespace ProjectGameDev
         private void InitializeGameObjects()
         {
             hero = new Hero(texture, new KeyBoardReader());
-                    enemy = new Enemy(enemyTexture, new Vector2(945, 192), 75);
+                    enemy = new Enemy(enemyTexture, new Vector2(945, 181), 75);
            
            // enemy = new Enemy(enemyTexture, new Vector2(0, 0));
         }
