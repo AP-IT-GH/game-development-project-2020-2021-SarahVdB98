@@ -10,7 +10,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
-    class Hero : IGameObject, ICollision
+    class Hero : IGameObject, ICollision, ITransform
     {
         Texture2D heroTexture;
         Animatie animatieR;
@@ -26,8 +26,8 @@ namespace ProjectGameDev
 
         public static bool IsGrounded = true;
 
+        public Vector2 position { get; set; }
         public Vector2 positie;
-        public static Vector2 position;
         public Vector2 startPos;
 
         public IInputReader inputReader;
@@ -40,10 +40,9 @@ namespace ProjectGameDev
         public Hero(Texture2D texture, IInputReader reader)
         {
             heroTexture = texture;
-            startPos = new Vector2(150, 365.5f);
+            startPos = new Vector2(150, 584f);
             positie = startPos;
             position = positie;
-           
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
             {
@@ -68,32 +67,45 @@ namespace ProjectGameDev
             this.inputReader = reader;
             currentAnimation = animatieStand;
 
-
         }
-        
+
 
         public void Update(GameTime gameTime)
         {
-            position = positie;
-            positie = position;
+            
             KeyboardState stateKey = Keyboard.GetState();
             
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            if (positie.Y < 0) {positie.Y = 0; }
+            
+            
 
-            if (positie.Y < startPos.Y)
+            if (positie.Y < 700)
             {
-                if (canMoveDown)
+                if (positie.Y <= 584)
                 {
-                    IsGrounded = true;
+                    if (CollisionManager.collided)
+                    {
+                        IsGrounded = true;
+
+                    }
+                    else
+                    {
+                        IsGrounded = false;
+                    }
                 }
                 else
                 {
-                    IsGrounded = false;
+                    IsGrounded = true;
                 }
-                if (positie.Y > startPos.Y)
+                positie.Y += gravity;
+                gravity += 0.1f;
+                if (gravity > 2f)
+                {
+                    gravity = 2f;
+                }
+                if (positie.Y > 750)
                 {
                     Game1.gameState = GameState.Dead;
                 }
@@ -109,6 +121,26 @@ namespace ProjectGameDev
             else if (stateKey.IsKeyDown(Keys.Space))
             {
                 currentAnimation = jump;
+                IsGrounded = false;
+            }
+            else if (currentAnimation == jump && positie.Y < startPos.Y)
+            {
+                if (CollisionManager.collided)
+                {
+                    IsGrounded = true;
+
+                }
+                else
+                {
+                    IsGrounded = false;
+                    positie.Y += gravity;
+                    gravity += 0.1f;
+                    if (gravity > 2f)
+                    {
+                        gravity = 2f;
+                    }
+                }
+               
             }
             else
             {

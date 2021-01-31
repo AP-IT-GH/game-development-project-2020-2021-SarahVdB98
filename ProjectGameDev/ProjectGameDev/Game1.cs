@@ -39,6 +39,8 @@ namespace ProjectGameDev
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1080;
+            _graphics.PreferredBackBufferHeight = 720;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             this.Components.Add(new MyControls(this));
@@ -63,7 +65,7 @@ namespace ProjectGameDev
             // TODO: use this.Content to load your game content here
             texture = Content.Load<Texture2D>("trump_walk");
             enemyTexture = Content.Load<Texture2D>("6-63763_politics-kim-jong-un-kim-jong-un-png");
-            background = Content.Load<Texture2D>("background2");
+            background = Content.Load<Texture2D>("background4");
 
 
             InitializeGameObjects();
@@ -72,13 +74,16 @@ namespace ProjectGameDev
         private void InitializeGameObjects()
         {
             hero = new Hero(texture, new KeyBoardReader());
-            enemy = new Enemy(enemyTexture);
+                    enemy = new Enemy(enemyTexture, new Vector2(945, 192), 75);
+           
+           // enemy = new Enemy(enemyTexture, new Vector2(0, 0));
         }
 
 
         protected override void Update(GameTime gameTime)
         {
             
+            Debug.WriteLine(enemy.positie);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
            
@@ -111,6 +116,7 @@ namespace ProjectGameDev
             }
             if (gameState == GameState.Game)
             {
+                
                 hero.Draw(_spriteBatch);
                 enemy.Draw(_spriteBatch);
                 level.DrawWorld(_spriteBatch);

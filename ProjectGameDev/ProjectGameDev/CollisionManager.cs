@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ProjectGameDev.Input;
 using ProjectGameDev.LevelDesign;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,11 @@ namespace ProjectGameDev
                     {
                         if (CheckCollision(hero.CollisionRectangle, level.blokArray[x, y].CollisionRectangle))
                         {
-                            
                             //als je erbovenop staat
-                            if (hero.CollisionRectangle.Y + 85 < level.blokArray[x, y].CollisionRectangle.Y)
+                            if (hero.CollisionRectangle.Y+80< level.blokArray[x, y].CollisionRectangle.Y)
                             {
-                                Hero.IsGrounded = true;
+                                collided = true;
+                                hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Top - hero.CollisionRectangle.Height;
                             }
                             //als je er niet bovenop staat
                             //rechts ertegen
@@ -38,10 +39,11 @@ namespace ProjectGameDev
                                 hero.inputReader.canMoveRight = false;
                             }
                             // als je eronder zit
-                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y && hero.CollisionRectangle.Y + 1 < hero.startPos.Y)
+                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y)
                             {
                                 hero.inputReader.canMoveUp = false;
-                                Hero.IsGrounded = false;
+                                hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Bottom;
+                                KeyBoardReader.Velocity.Y = 0.1f;
                             }
                         }
 
@@ -53,10 +55,8 @@ namespace ProjectGameDev
 
         public void collisionAction(Hero hero, Enemy enemy)
         {
-            
             if (CheckCollision(hero.CollisionRectangle, enemy.CollisionRectangle))
             {
-               
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < enemy.CollisionRectangle.Y)
                 {
@@ -78,6 +78,7 @@ namespace ProjectGameDev
                 if (hero.CollisionRectangle.Y > enemy.CollisionRectangle.Y)
                 {
                     Game1.gameState = GameState.Dead;
+                    hero.inputReader.canMoveUp = false;
                 }
             }
         

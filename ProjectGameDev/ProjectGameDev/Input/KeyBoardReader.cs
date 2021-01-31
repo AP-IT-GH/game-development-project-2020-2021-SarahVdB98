@@ -14,7 +14,7 @@ namespace ProjectGameDev.Input
         public bool canMoveUp { get; set; } = true;
         public bool canMoveDown { get; set; } = false;
 
-        Vector2 Velocity;
+        public static Vector2 Velocity;
 
         public Vector2 ReadInput()
         {
@@ -36,31 +36,32 @@ namespace ProjectGameDev.Input
                 }
                 canMoveRight = true;                
             }
-            
+
             if (state.IsKeyDown(Keys.Space) && Hero.IsGrounded)
             {
                 if (canMoveUp)
                 {
-                    direction += new Vector2(0, -1);
-                    Velocity.Y = -6f;
+                    direction = new Vector2(0,-1);
+                    Velocity.Y = -8f;
                     Hero.IsGrounded = false;
                 }
+                canMoveUp = true;
+                canMoveRight = true;
+                canMoveLeft = true;
+                canMoveDown = true;
+                CollisionManager.collided = false;
             }
             if (!Hero.IsGrounded)
             {
-                Velocity.Y += 0.15f;
+                Velocity.Y += 0.12f;
             }
             if (Hero.IsGrounded)
             {
                 Velocity.Y = 0;
             }
-            //if (Hero.position.Y > 360f)
-            //{
-            //    Hero.IsGrounded = true;
-            //}
 
-            //direction += Velocity;
             direction.X *= 3;
+            direction.Y += Velocity.Y;
 
             return direction;
         }

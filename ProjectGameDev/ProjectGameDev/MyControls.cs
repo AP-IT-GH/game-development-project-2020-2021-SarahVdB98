@@ -21,7 +21,7 @@ namespace ProjectGameDev
                 Text = "START",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(305, 200)
+                Location = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth/2, GraphicsDeviceManager.DefaultBackBufferWidth / 2)
 
             };
             btn1.Clicked += Btn1_Clicked;

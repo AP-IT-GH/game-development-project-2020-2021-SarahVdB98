@@ -6,12 +6,16 @@
   <SourceFiles>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/6-63763_politics-kim-jong-un-kim-jong-un-png.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background2.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background3.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background4.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/blok.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/DefaultFont.spritefont</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/trump_iddle.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/trump_walk.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

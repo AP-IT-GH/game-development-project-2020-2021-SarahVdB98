@@ -15,7 +15,7 @@ namespace ProjectGameDev
         public Vector2 Positie { get; set; }
 
 
-        public Brick(Texture2D brick , Vector2 vector2)
+        public Brick(Texture2D brick, Vector2 vector2)
         {
             BrickTexture = brick;
             Positie = vector2;
@@ -29,7 +29,7 @@ namespace ProjectGameDev
 
         public void Update()
         {
-            
+            //
         }
     }
 }

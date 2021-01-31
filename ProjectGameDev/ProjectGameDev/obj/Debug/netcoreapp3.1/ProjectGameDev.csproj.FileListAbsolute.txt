@@ -1,6 +1,14 @@
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\6-63763_politics-kim-jong-un-kim-jong-un-png.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background2.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background3.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background4.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\blok.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\defaultFont.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\trump_iddle.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\trump_run.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\trump_walk.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\wall.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\ProjectGameDev.exe
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\ProjectGameDev.deps.json
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\ProjectGameDev.runtimeconfig.json
@@ -12,6 +20,7 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.VisualBasic.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Microsoft.VisualBasic.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\MonoGame.Framework.dll
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\MonoGame.UI.Forms.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\SharpDX.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\SharpDX.Direct2D1.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\SharpDX.Direct3D11.dll
@@ -29,7 +38,6 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\runtimes\win7-arm\native\libuv.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\runtimes\win7-x64\native\libuv.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\runtimes\win7-x86\native\libuv.dll
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.csprojAssemblyReference.cache
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.AssemblyInfoInputs.cache
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.AssemblyInfo.cs
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.csproj.CoreCompileInputs.cache
@@ -37,10 +45,4 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.dll
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.pdb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.genruntimeconfig.cache
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\wall.xnb
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background.xnb
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\background2.xnb
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\blok.xnb
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\MonoGame.UI.Forms.dll
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\defaultFont.xnb
-C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\6-63763_politics-kim-jong-un-kim-jong-un-png.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.csprojAssemblyReference.cache
