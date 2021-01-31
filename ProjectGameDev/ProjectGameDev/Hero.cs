@@ -10,7 +10,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
-    class Hero : IGameObject, ICollision, ITransform
+    class Hero : IGameObject, ICollision
     {
         Texture2D heroTexture;
         Animatie animatieR;
@@ -26,8 +26,8 @@ namespace ProjectGameDev
 
         public static bool IsGrounded = true;
 
-        public Vector2 position { get; set; }
         public Vector2 positie;
+        public static Vector2 position;
         public Vector2 startPos;
 
         public IInputReader inputReader;
@@ -43,6 +43,7 @@ namespace ProjectGameDev
             startPos = new Vector2(150, 365.5f);
             positie = startPos;
             position = positie;
+           
             animatieR = new Animatie();
             for (int i = 0; i < 2560; i+=256)
             {
@@ -73,32 +74,26 @@ namespace ProjectGameDev
 
         public void Update(GameTime gameTime)
         {
-            
+            position = positie;
+            positie = position;
             KeyboardState stateKey = Keyboard.GetState();
             
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            
             if (positie.Y < 0) {positie.Y = 0; }
 
-            if (positie.Y < 500)
+            if (positie.Y < startPos.Y)
             {
-                if (positie.Y <= 364f)
-                {
-                    IsGrounded = false;
-                }
-                else
+                if (canMoveDown)
                 {
                     IsGrounded = true;
                 }
-                positie.Y += gravity;
-                gravity += 0.1f;
-                if (gravity > 2f)
+                else
                 {
-                    gravity = 2f;
+                    IsGrounded = false;
                 }
-                if (positie.Y > 450)
+                if (positie.Y > startPos.Y)
                 {
                     Game1.gameState = GameState.Dead;
                 }
@@ -114,17 +109,6 @@ namespace ProjectGameDev
             else if (stateKey.IsKeyDown(Keys.Space))
             {
                 currentAnimation = jump;
-                IsGrounded = false;
-            }
-            else if (currentAnimation == jump && positie.Y < startPos.Y)
-            {
-                IsGrounded = false;
-                    positie.Y += gravity;
-                    gravity += 0.1f;
-                    if (gravity > 2f)
-                    {
-                        gravity = 2f;
-                    }
             }
             else
             {

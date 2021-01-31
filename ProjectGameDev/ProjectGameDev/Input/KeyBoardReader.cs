@@ -14,6 +14,8 @@ namespace ProjectGameDev.Input
         public bool canMoveUp { get; set; } = true;
         public bool canMoveDown { get; set; } = false;
 
+        Vector2 Velocity;
+
         public Vector2 ReadInput()
         {
             var direction = Vector2.Zero;
@@ -39,14 +41,26 @@ namespace ProjectGameDev.Input
             {
                 if (canMoveUp)
                 {
-                    direction = new Vector2(0, -100);
+                    direction += new Vector2(0, -1);
+                    Velocity.Y = -6f;
+                    Hero.IsGrounded = false;
                 }
-                Hero.IsGrounded = false;
-                canMoveUp = true;
-                canMoveRight = true; canMoveLeft = true;
             }
+            if (!Hero.IsGrounded)
+            {
+                Velocity.Y += 0.15f;
+            }
+            if (Hero.IsGrounded)
+            {
+                Velocity.Y = 0;
+            }
+            //if (Hero.position.Y > 360f)
+            //{
+            //    Hero.IsGrounded = true;
+            //}
 
-            direction *= 3;
+            //direction += Velocity;
+            direction.X *= 3;
 
             return direction;
         }

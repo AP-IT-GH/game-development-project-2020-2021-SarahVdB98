@@ -9,7 +9,7 @@ namespace ProjectGameDev
 {
     class CollisionManager
     {
-        
+        public static bool collided;
         public void collisionAction( Level level, Hero hero)
         {
             for (int x = 0; x < Level.rows; x++)
@@ -20,10 +20,11 @@ namespace ProjectGameDev
                     {
                         if (CheckCollision(hero.CollisionRectangle, level.blokArray[x, y].CollisionRectangle))
                         {
+                            
                             //als je erbovenop staat
                             if (hero.CollisionRectangle.Y + 85 < level.blokArray[x, y].CollisionRectangle.Y)
                             {
-                                hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Top - hero.CollisionRectangle.Height;
+                                Hero.IsGrounded = true;
                             }
                             //als je er niet bovenop staat
                             //rechts ertegen
@@ -37,9 +38,10 @@ namespace ProjectGameDev
                                 hero.inputReader.canMoveRight = false;
                             }
                             // als je eronder zit
-                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y)
+                            if (hero.CollisionRectangle.Y > level.blokArray[x, y].CollisionRectangle.Y && hero.CollisionRectangle.Y + 1 < hero.startPos.Y)
                             {
                                 hero.inputReader.canMoveUp = false;
+                                Hero.IsGrounded = false;
                             }
                         }
 
@@ -51,11 +53,14 @@ namespace ProjectGameDev
 
         public void collisionAction(Hero hero, Enemy enemy)
         {
+            
             if (CheckCollision(hero.CollisionRectangle, enemy.CollisionRectangle))
             {
+               
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < enemy.CollisionRectangle.Y)
                 {
+                    collided = true;
                     enemy.positie = new Vector2(-100, -100);
                 }
                 //als je er niet bovenop staat

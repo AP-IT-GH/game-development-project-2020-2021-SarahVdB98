@@ -111,7 +111,6 @@ namespace ProjectGameDev
             }
             if (gameState == GameState.Game)
             {
-                
                 hero.Draw(_spriteBatch);
                 enemy.Draw(_spriteBatch);
                 level.DrawWorld(_spriteBatch);
