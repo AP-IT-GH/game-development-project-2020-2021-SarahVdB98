@@ -21,7 +21,7 @@ namespace ProjectGameDev
                 Text = "START",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth/2, GraphicsDeviceManager.DefaultBackBufferWidth / 2)
+                Location = new Vector2(450, GraphicsDeviceManager.DefaultBackBufferWidth / 2)
 
             };
             btn1.Clicked += Btn1_Clicked;
@@ -32,7 +32,7 @@ namespace ProjectGameDev
                 Text = "UITLEG",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(305, 265)
+                Location = new Vector2(450, (GraphicsDeviceManager.DefaultBackBufferWidth / 2)-70)
             };
             btn2.Clicked += Btn2_Clicked;
             Controls.Add(btn2);

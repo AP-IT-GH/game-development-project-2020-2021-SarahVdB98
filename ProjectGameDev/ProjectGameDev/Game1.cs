@@ -74,7 +74,7 @@ namespace ProjectGameDev
         private void InitializeGameObjects()
         {
             hero = new Hero(texture, new KeyBoardReader());
-                    enemy = new Enemy(enemyTexture, new Vector2(945, 181), 75);
+            enemy = new Enemy(enemyTexture, new Vector2(945, 181), 75);
            
            // enemy = new Enemy(enemyTexture, new Vector2(0, 0));
         }
@@ -135,12 +135,21 @@ namespace ProjectGameDev
             {
                 Initialize();
                 LoadContent();
+                InitializeGameObjects();
+                _spriteBatch.Begin(SpriteSortMode.Deferred,
+              BlendState.AlphaBlend,
+              null, null, null, null,
+              camera.transform);
+                hero.Draw(_spriteBatch);
+                enemy.Draw(_spriteBatch);
+                level.DrawWorld(_spriteBatch);
+                _spriteBatch.End();
+
             }
             if (gameState == GameState.End)
             {
                 Exit();
             }
-
             base.Draw(gameTime);
         }
     }

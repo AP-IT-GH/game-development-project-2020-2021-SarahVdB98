@@ -95,17 +95,13 @@ namespace ProjectGameDev
                         IsGrounded = false;
                     }
                 }
-                else
-                {
-                    IsGrounded = true;
-                }
                 positie.Y += gravity;
                 gravity += 0.1f;
                 if (gravity > 2f)
                 {
                     gravity = 2f;
                 }
-                if (positie.Y > 750)
+                if (positie.Y > startPos.Y+50)
                 {
                     Game1.gameState = GameState.Dead;
                 }
@@ -121,7 +117,6 @@ namespace ProjectGameDev
             else if (stateKey.IsKeyDown(Keys.Space))
             {
                 currentAnimation = jump;
-                IsGrounded = false;
             }
             else if (currentAnimation == jump && positie.Y < startPos.Y)
             {

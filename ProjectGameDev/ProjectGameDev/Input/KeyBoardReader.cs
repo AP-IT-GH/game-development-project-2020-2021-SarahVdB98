@@ -39,16 +39,13 @@ namespace ProjectGameDev.Input
 
             if (state.IsKeyDown(Keys.Space) && Hero.IsGrounded)
             {
+                Hero.IsGrounded = false;
                 if (canMoveUp)
                 {
                     direction = new Vector2(0,-1);
                     Velocity.Y = -8f;
-                    Hero.IsGrounded = false;
+                   
                 }
-                canMoveUp = true;
-                canMoveRight = true;
-                canMoveLeft = true;
-                canMoveDown = true;
                 CollisionManager.collided = false;
             }
             if (!Hero.IsGrounded)
