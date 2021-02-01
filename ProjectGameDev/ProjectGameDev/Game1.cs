@@ -37,7 +37,7 @@ namespace ProjectGameDev
         Hero hero;
         Enemy enemy;
         Enemy enemy2;
-        Level level;
+        Level2 level;
         Level2 level2;
         CollisionManager collisionManager;
         Camera camera;
@@ -79,14 +79,14 @@ namespace ProjectGameDev
             base.Initialize();
         }
 
-        private void LoadNextLevel()
-        {
-            // Unloads the content for the current level before loading the next one.
-            if (level != null)
-                Content.Unload();
-                level2 = new Level2(Content);
-            Content.RootDirectory = "Content";
-        }
+        //private void LoadNextLevel()
+        //{
+        //    // Unloads the content for the current level before loading the next one.
+        //    if (level != null)
+        //        Content.Unload();
+        //        level2 = new Level2(Content);
+        //    Content.RootDirectory = "Content";
+        //}
 
         protected override void LoadContent()
         {
@@ -103,7 +103,7 @@ namespace ProjectGameDev
 
 
 
-            InitializeGameObjects();
+            InitializeGameObjects2();
         }
 
         private void InitializeGameObjects()
@@ -117,6 +117,16 @@ namespace ProjectGameDev
 
         }
 
+        private void InitializeGameObjects2()
+        {
+            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 550 /*584f*/));
+            enemy = new Enemy(enemyTexture, new Vector2(561, 566));
+            enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
+            key = new Key(keyTexture, new Vector2(830, 80));
+            key2 = new Key(keyTexture, new Vector2(2040, 45));
+            door = new Door(doorTexture, new Vector2(4096, 577));
+
+        }
 
         protected override void Update(GameTime gameTime)
         {
@@ -130,22 +140,26 @@ namespace ProjectGameDev
                 gameState = GameState.Game;
             }
 
-            //Debug.WriteLine(hero.positie);
+            Debug.WriteLine(hero.positie);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
            
-            collisionManager.collisionAction(hero, enemy);
+            
             
             collisionManager.collisionAction(level, hero);
             if (CollisionManager.hasAccessLevelTwo)
             {
                 collisionManager.collisionAction(level2, hero);
             }
-
+            collisionManager.collisionAction(hero, enemy);
             collisionManager.collisionAction(hero, key);
-            collisionManager.collisionAction(hero, key2);
+            //collisionManager.collisionAction(hero, key2);
+
             collisionManager.collisionAction(hero, door);
-            collisionManager.collisionAction(hero, enemy2);
+            door.Update(gameTime);
+
+            //collisionManager.collisionAction(hero, enemy2);
+
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
@@ -153,7 +167,7 @@ namespace ProjectGameDev
             camera.Update(gameTime, hero);
             key.Update(gameTime);
             key2.Update(gameTime);
-            door.Update(gameTime);
+            
 
             base.Update(gameTime);
         }
@@ -175,15 +189,15 @@ namespace ProjectGameDev
                 
                 if (CollisionManager.hasAccessLevelTwo)
                 {
-                    LoadNextLevel();
+                    //LoadNextLevel();
                     Initialize();
                     InitializeGameObjects();
                     LoadContent();
                     CollisionManager.hasKeyTwo = false;
                     _spriteBatch.Begin(SpriteSortMode.Deferred,
-             BlendState.AlphaBlend,
-             null, null, null, null,
-             camera.transform);
+                     BlendState.AlphaBlend,
+                     null, null, null, null,
+                     camera.transform);
 
                    
                     //_spriteBatch.Begin();
@@ -192,9 +206,6 @@ namespace ProjectGameDev
                     _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
 
                     _spriteBatch.End();
-                   
-
-
                     _spriteBatch.Begin();
                     key.Draw(_spriteBatch);
                     key2.Draw(_spriteBatch);
@@ -216,11 +227,11 @@ namespace ProjectGameDev
               camera.transform);
 
                     key.Draw(_spriteBatch);
-                    key2.Draw(_spriteBatch);
+                    //key2.Draw(_spriteBatch);
                     door.Draw(_spriteBatch);
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
-                    enemy2.Draw(_spriteBatch);
+                    //enemy2.Draw(_spriteBatch);
                     level.DrawWorld(_spriteBatch);
                     _spriteBatch.End();
                 }

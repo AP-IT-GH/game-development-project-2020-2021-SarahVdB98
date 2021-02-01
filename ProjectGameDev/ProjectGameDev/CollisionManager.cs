@@ -87,7 +87,7 @@ namespace ProjectGameDev
                             else if (hero.CollisionRectangle.X + 30 < level.blokArray2[x, y].CollisionRectangle.X)
                             {
                                 collided = true;
-                                hero.inputReader.canMoveRight = false;
+                                //hero.inputReader.canMoveRight = false;
                                 hero.inputReader.canMoveUp = true;
                             }
                             // als je eronder zit
