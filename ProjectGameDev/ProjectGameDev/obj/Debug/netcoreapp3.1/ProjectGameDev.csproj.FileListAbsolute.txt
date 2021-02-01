@@ -46,3 +46,6 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.pdb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.genruntimeconfig.cache
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\obj\Debug\netcoreapp3.1\ProjectGameDev.csprojAssemblyReference.cache
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\door-closed.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\door-open.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\key.xnb

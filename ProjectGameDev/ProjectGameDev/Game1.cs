@@ -26,15 +26,22 @@ namespace ProjectGameDev
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
         private Texture2D enemyTexture;
+        private Texture2D keyTexture;
         private Texture2D background;
+        private Texture2D doorTexture;
         public static GameState gameState;
 
 
         Hero hero;
         Enemy enemy;
+        Enemy enemy2;
         Level level;
+         Level2 level2;
         CollisionManager collisionManager;
         Camera camera;
+        Door door;
+        public static Key key;
+        public static Key key2;
 
         public Game1()
         {
@@ -52,20 +59,34 @@ namespace ProjectGameDev
             collisionManager = new CollisionManager();
             camera = new Camera(GraphicsDevice.Viewport);
             gameState = new GameState();
-            level = new Level(Content);
-            level.CreateWorld();
-            
+
+            if (CollisionManager.hasAccessLevelTwo)
+            {
+                level2 = new Level2(Content);
+                level2.CreateWorld();
+            }
+            else
+            {
+                level = new Level(Content);
+                level.CreateWorld();
+            }
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            gameState = GameState.Start;
-            // TODO: use this.Content to load your game content here
+            if (!CollisionManager.hasAccessLevelTwo)
+            {
+                gameState = GameState.Start;
+            }
             texture = Content.Load<Texture2D>("trump_walk");
             enemyTexture = Content.Load<Texture2D>("6-63763_politics-kim-jong-un-kim-jong-un-png");
             background = Content.Load<Texture2D>("background4");
+            keyTexture = Content.Load<Texture2D>("key");
+            doorTexture = Content.Load<Texture2D>("door-closed");
+
 
 
             InitializeGameObjects();
@@ -73,43 +94,64 @@ namespace ProjectGameDev
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(texture, new KeyBoardReader());
-            enemy = new Enemy(enemyTexture, new Vector2(945, 181), 75);
-           
-           // enemy = new Enemy(enemyTexture, new Vector2(0, 0));
+            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 584f));
+            enemy = new Enemy(enemyTexture, new Vector2(945, 181));
+            enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
+            key = new Key(keyTexture, new Vector2(870, 220));
+            key2 = new Key(keyTexture, new Vector2(2040, 45));
+            door = new Door(doorTexture, new Vector2(4096, 577));
+
         }
 
 
         protected override void Update(GameTime gameTime)
         {
-            
-            Debug.WriteLine(enemy.positie);
+            if (CollisionManager.hasKeyTwo)
+            {
+                doorTexture = Content.Load<Texture2D>("door-open");
+                door = new Door(doorTexture, new Vector2(4096, 577));
+            }
+            if (CollisionManager.hasAccessLevelTwo)
+            {
+                gameState = GameState.Game;
+            }
+
+            Debug.WriteLine(hero.positie);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
            
             collisionManager.collisionAction(hero, enemy);
+            
             collisionManager.collisionAction(level, hero);
+            if (CollisionManager.hasAccessLevelTwo)
+            {
+                collisionManager.collisionAction(level2, hero);
+            }
+
+            collisionManager.collisionAction(hero, key);
+            collisionManager.collisionAction(hero, key2);
+            collisionManager.collisionAction(hero, door);
+            collisionManager.collisionAction(hero, enemy2);
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
+            enemy2.Update(gameTime);
             camera.Update(gameTime, hero);
+            key.Update(gameTime);
+            key2.Update(gameTime);
+            door.Update(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
             _spriteBatch.Begin();
+
+            GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
             _spriteBatch.End();
 
-
-            _spriteBatch.Begin(SpriteSortMode.Deferred,
-               BlendState.AlphaBlend,
-               null, null, null, null,
-               camera.transform);
             if (gameState == GameState.Start)
             {
                 
@@ -117,10 +159,55 @@ namespace ProjectGameDev
             if (gameState == GameState.Game)
             {
                 
-                hero.Draw(_spriteBatch);
-                enemy.Draw(_spriteBatch);
-                level.DrawWorld(_spriteBatch);
+                if (CollisionManager.hasAccessLevelTwo)
+                {
+                    CollisionManager.hasKeyTwo = false;
+                    _spriteBatch.Begin();
+
+                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                    _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+
+                    _spriteBatch.End();
+
+                    Initialize();
+                    LoadContent();
+
+                    _spriteBatch.Begin(SpriteSortMode.Deferred,
+                    BlendState.AlphaBlend,
+                    null, null, null, null,
+                    camera.transform);
+
+                    key.Draw(_spriteBatch);
+                    key2.Draw(_spriteBatch);
+                    door.Draw(_spriteBatch);
+                    hero.Draw(_spriteBatch);
+                    enemy.Draw(_spriteBatch);
+                    level2.DrawWorld(_spriteBatch);
+
+                    _spriteBatch.End();
+                }
+
+                else
+                {
+
+                    _spriteBatch.Begin(SpriteSortMode.Deferred,
+              BlendState.AlphaBlend,
+              null, null, null, null,
+              camera.transform);
+
+                    key.Draw(_spriteBatch);
+                    key2.Draw(_spriteBatch);
+                    door.Draw(_spriteBatch);
+                    hero.Draw(_spriteBatch);
+                    enemy.Draw(_spriteBatch);
+                    enemy2.Draw(_spriteBatch);
+                    level.DrawWorld(_spriteBatch);
+                    _spriteBatch.End();
+                }
+                
+                
             }
+            
             if (gameState == GameState.Uitleg)
             {
             }
@@ -130,20 +217,8 @@ namespace ProjectGameDev
             if (gameState == GameState.Pause)
             {
             }
-            _spriteBatch.End();
             if (gameState == GameState.Restart)
             {
-                Initialize();
-                LoadContent();
-                InitializeGameObjects();
-                _spriteBatch.Begin(SpriteSortMode.Deferred,
-              BlendState.AlphaBlend,
-              null, null, null, null,
-              camera.transform);
-                hero.Draw(_spriteBatch);
-                enemy.Draw(_spriteBatch);
-                level.DrawWorld(_spriteBatch);
-                _spriteBatch.End();
 
             }
             if (gameState == GameState.End)

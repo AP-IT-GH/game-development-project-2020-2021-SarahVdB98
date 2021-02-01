@@ -1,60 +1,42 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using ProjectGameDev.Animation;
 using ProjectGameDev.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProjectGameDev
+namespace ProjectGameDev.LevelDesign
 {
-    class Enemy
+    class Door :IGameObject
     {
-        Texture2D enemyTexture;
+        Texture2D doorTexture;
 
         public Vector2 positie;
-        Vector2 origin;
-        Vector2 velocity;
         public Rectangle rect;
         public Rectangle CollisionRectangle { get; set; }
         private Rectangle _collisionRectangle;
 
-        bool right;
-        float distance;
-        float oldDistance;
-        
-
-        public Enemy(Texture2D texture , Vector2 vector2)
+        public Door(Texture2D texture, Vector2 vector2)
         {
-            enemyTexture = texture;
+            doorTexture = texture;
             positie = vector2;
             rect.Width = 550;
             rect.Height = 991;
-            CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 10, 10);
+            CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 60, 90);
         }
-        float mousedistance;
+
         public void Update(GameTime gameTime)
         {
-            positie += velocity;
-
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;
-            _collisionRectangle.Width = 25;
-            _collisionRectangle.Height = 25;
+            _collisionRectangle.Width = 60;
+            _collisionRectangle.Height = 90;
             CollisionRectangle = _collisionRectangle;
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
-                spriteBatch.Draw(enemyTexture, positie, null, Color.White, 0, origin, 0.1f, SpriteEffects.None, 0);
-            
-
+            spriteBatch.Draw(doorTexture, positie, null, Color.White, 0, new Vector2(0, 0), 1f, SpriteEffects.None, 0);
         }
-
-
     }
 }

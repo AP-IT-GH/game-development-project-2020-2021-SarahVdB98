@@ -37,10 +37,10 @@ namespace ProjectGameDev
 
         private Rectangle _collisionRectangle;
 
-        public Hero(Texture2D texture, IInputReader reader)
+        public Hero(Texture2D texture, IInputReader reader, Vector2 vector2)
         {
             heroTexture = texture;
-            startPos = new Vector2(150, 584f);
+            startPos = vector2;
             positie = startPos;
             position = positie;
             animatieR = new Animatie();
@@ -78,10 +78,18 @@ namespace ProjectGameDev
             var direction = inputReader.ReadInput();
             positie += direction;
 
-            
-            
+            if (CollisionManager.hasKeyOne)
+            {
+                Game1.key.positie.X = positie.X-360;
+            }
+            if (CollisionManager.hasKeyTwo)
+            {
+                Game1.key2.positie.X = positie.X-300;
+            }
 
-            if (positie.Y < 700)
+            if (positie.Y < -60) { positie.Y = -60; }
+
+                if (positie.Y < 700)
             {
                 if (positie.Y <= 584)
                 {

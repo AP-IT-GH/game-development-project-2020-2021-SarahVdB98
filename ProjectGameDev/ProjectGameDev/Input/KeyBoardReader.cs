@@ -51,6 +51,10 @@ namespace ProjectGameDev.Input
             if (!Hero.IsGrounded)
             {
                 Velocity.Y += 0.12f;
+                if (Velocity.Y > 2)
+                {
+                    Velocity.Y = 2;
+                }
             }
             if (Hero.IsGrounded)
             {
