@@ -7,6 +7,8 @@ using ProjectGameDev.LevelDesign;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+
 public enum GameState
 {
     Start,
@@ -36,9 +38,10 @@ namespace ProjectGameDev
         Enemy enemy;
         Enemy enemy2;
         Level level;
-         Level2 level2;
+        Level2 level2;
         CollisionManager collisionManager;
         Camera camera;
+        Camera camera2;
         Door door;
         public static Key key;
         public static Key key2;
@@ -58,6 +61,8 @@ namespace ProjectGameDev
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
             camera = new Camera(GraphicsDevice.Viewport);
+
+            camera2 = new Camera(GraphicsDevice.Viewport);
             gameState = new GameState();
 
             if (CollisionManager.hasAccessLevelTwo)
@@ -67,11 +72,20 @@ namespace ProjectGameDev
             }
             else
             {
-                level = new Level(Content);
+                level = new Level2(Content);
                 level.CreateWorld();
             }
 
             base.Initialize();
+        }
+
+        private void LoadNextLevel()
+        {
+            // Unloads the content for the current level before loading the next one.
+            if (level != null)
+                Content.Unload();
+                level2 = new Level2(Content);
+            Content.RootDirectory = "Content";
         }
 
         protected override void LoadContent()
@@ -94,7 +108,7 @@ namespace ProjectGameDev
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 584f));
+            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150,550 /*584f*/));
             enemy = new Enemy(enemyTexture, new Vector2(945, 181));
             enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
             key = new Key(keyTexture, new Vector2(870, 220));
@@ -116,7 +130,7 @@ namespace ProjectGameDev
                 gameState = GameState.Game;
             }
 
-            Debug.WriteLine(hero.positie);
+            //Debug.WriteLine(hero.positie);
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
            
@@ -161,28 +175,34 @@ namespace ProjectGameDev
                 
                 if (CollisionManager.hasAccessLevelTwo)
                 {
+                    LoadNextLevel();
+                    Initialize();
+                    InitializeGameObjects();
+                    LoadContent();
                     CollisionManager.hasKeyTwo = false;
-                    _spriteBatch.Begin();
+                    _spriteBatch.Begin(SpriteSortMode.Deferred,
+             BlendState.AlphaBlend,
+             null, null, null, null,
+             camera.transform);
 
-                    GraphicsDevice.Clear(Color.CornflowerBlue);
+                   
+                    //_spriteBatch.Begin();
+
+                   // GraphicsDevice.Clear(Color.CornflowerBlue);
                     _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
 
                     _spriteBatch.End();
+                   
 
-                    Initialize();
-                    LoadContent();
 
-                    _spriteBatch.Begin(SpriteSortMode.Deferred,
-                    BlendState.AlphaBlend,
-                    null, null, null, null,
-                    camera.transform);
-
+                    _spriteBatch.Begin();
                     key.Draw(_spriteBatch);
                     key2.Draw(_spriteBatch);
                     door.Draw(_spriteBatch);
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
                     level2.DrawWorld(_spriteBatch);
+                    Update(gameTime);
 
                     _spriteBatch.End();
                 }
@@ -219,7 +239,8 @@ namespace ProjectGameDev
             }
             if (gameState == GameState.Restart)
             {
-
+                gameState = new GameState();
+                gameState = GameState.Start;
             }
             if (gameState == GameState.End)
             {
