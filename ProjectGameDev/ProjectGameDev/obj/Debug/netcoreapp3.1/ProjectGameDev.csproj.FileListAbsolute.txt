@@ -49,3 +49,8 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\door-closed.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\door-open.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\key.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\RunningForPresident.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\uitleg.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\uitleg2.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\uitleg3.xnb
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\dood.xnb

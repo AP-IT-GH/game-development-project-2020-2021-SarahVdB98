@@ -80,13 +80,12 @@ namespace ProjectGameDev
 
             if (CollisionManager.hasKeyOne)
             {
-                Game1.key.positie.X = positie.X-360;
+                Game1.key.positie.X = positie.X - 360;
             }
             if (CollisionManager.hasKeyTwo)
             {
-                Game1.key2.positie.X = positie.X-300;
+                Game1.key2.positie.X = positie.X - 300;
             }
-
             if (positie.Y < -60) { positie.Y = -60; }
 
                 if (positie.Y < 700)

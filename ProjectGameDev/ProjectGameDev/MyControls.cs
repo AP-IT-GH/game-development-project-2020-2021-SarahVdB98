@@ -68,7 +68,7 @@ namespace ProjectGameDev
                 Text = "CONTINUE",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(575, 15),
+                Location = new Vector2(850, 15),
                 IsVisible = false
 
             };
@@ -80,7 +80,7 @@ namespace ProjectGameDev
                 Text = "STOP",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(575, 165),
+                Location = new Vector2(850, 165),
                 IsVisible = false
             };
             btn6.Clicked += Btn6_Clicked;
@@ -91,7 +91,7 @@ namespace ProjectGameDev
                 Text = "RESTART",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(575, 90),
+                Location = new Vector2(850, 90),
                 IsVisible = false
             };
             btn7.Clicked += Btn7_Clicked;

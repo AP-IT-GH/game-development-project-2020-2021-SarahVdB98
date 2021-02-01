@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ProjectGameDev
 {
-    class Enemy
+    public class Enemy
     {
         Texture2D enemyTexture;
 

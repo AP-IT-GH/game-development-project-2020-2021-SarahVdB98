@@ -28,20 +28,24 @@ namespace ProjectGameDev
         private SpriteBatch _spriteBatch;
         private Texture2D texture;
         private Texture2D enemyTexture;
+        private Texture2D deadTexture;
         private Texture2D keyTexture;
         private Texture2D background;
         private Texture2D doorTexture;
+        private Texture2D titleTexture;
+        private Texture2D uitlegTexture;
         public static GameState gameState;
 
 
         Hero hero;
         Enemy enemy;
-        Enemy enemy2;
-        Level2 level;
+        public static Enemy enemy2;
+        Enemy enemy3;
+        Enemy enemy4;
+        Level level;
         Level2 level2;
         CollisionManager collisionManager;
         Camera camera;
-        Camera camera2;
         Door door;
         public static Key key;
         public static Key key2;
@@ -61,8 +65,6 @@ namespace ProjectGameDev
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
             camera = new Camera(GraphicsDevice.Viewport);
-
-            camera2 = new Camera(GraphicsDevice.Viewport);
             gameState = new GameState();
 
             if (CollisionManager.hasAccessLevelTwo)
@@ -72,21 +74,21 @@ namespace ProjectGameDev
             }
             else
             {
-                level = new Level2(Content);
+                level = new Level(Content);
                 level.CreateWorld();
             }
 
             base.Initialize();
         }
 
-        //private void LoadNextLevel()
-        //{
-        //    // Unloads the content for the current level before loading the next one.
-        //    if (level != null)
-        //        Content.Unload();
-        //        level2 = new Level2(Content);
-        //    Content.RootDirectory = "Content";
-        //}
+        private void LoadNextLevel()
+        {
+            // Unloads the content for the current level before loading the next one.
+            if (level != null)
+                Content.Unload();
+
+            level2 = new Level2(Content);
+        }
 
         protected override void LoadContent()
         {
@@ -100,33 +102,42 @@ namespace ProjectGameDev
             background = Content.Load<Texture2D>("background4");
             keyTexture = Content.Load<Texture2D>("key");
             doorTexture = Content.Load<Texture2D>("door-closed");
+            titleTexture = Content.Load<Texture2D>("RunningForPresident");
+            uitlegTexture = Content.Load<Texture2D>("uitleg3");
+            deadTexture = Content.Load<Texture2D>("dood");
 
 
 
-            InitializeGameObjects2();
+            InitializeGameObjects();
         }
 
         private void InitializeGameObjects()
         {
-            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150,550 /*584f*/));
-            enemy = new Enemy(enemyTexture, new Vector2(945, 181));
-            enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
-            key = new Key(keyTexture, new Vector2(870, 220));
-            key2 = new Key(keyTexture, new Vector2(2040, 45));
-            door = new Door(doorTexture, new Vector2(4096, 577));
+            if (CollisionManager.hasAccessLevelTwo)
+            {
 
+                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 550));
+                enemy = new Enemy(enemyTexture, new Vector2(561, 566));
+                enemy2 = new Enemy(enemyTexture, new Vector2(1050, 566));
+                enemy3 = new Enemy(enemyTexture, new Vector2(561, 566));
+                enemy4 = new Enemy(enemyTexture, new Vector2(2155, 566));
+                key = new Key(keyTexture, new Vector2(830, 80));
+                key2 = new Key(keyTexture, new Vector2(2040, 45));
+                door = new Door(doorTexture, new Vector2(4096, 577));
+            }
+            else
+            {
+
+                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150,584f));
+                enemy = new Enemy(enemyTexture, new Vector2(945, 181));
+                enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
+                key = new Key(keyTexture, new Vector2(870, 220));
+                key2 = new Key(keyTexture, new Vector2(2040, 45));
+                door = new Door(doorTexture, new Vector2(4096, 577));
+
+            }
         }
 
-        private void InitializeGameObjects2()
-        {
-            hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 550 /*584f*/));
-            enemy = new Enemy(enemyTexture, new Vector2(561, 566));
-            enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
-            key = new Key(keyTexture, new Vector2(830, 80));
-            key2 = new Key(keyTexture, new Vector2(2040, 45));
-            door = new Door(doorTexture, new Vector2(4096, 577));
-
-        }
 
         protected override void Update(GameTime gameTime)
         {
@@ -138,6 +149,7 @@ namespace ProjectGameDev
             if (CollisionManager.hasAccessLevelTwo)
             {
                 gameState = GameState.Game;
+               
             }
 
             Debug.WriteLine(hero.positie);
@@ -150,16 +162,25 @@ namespace ProjectGameDev
             if (CollisionManager.hasAccessLevelTwo)
             {
                 collisionManager.collisionAction(level2, hero);
+
+                collisionManager.collisionAction(hero, enemy);
+                collisionManager.collisionAction(hero, enemy2);
+                collisionManager.collisionAction(hero, enemy3);
+                collisionManager.collisionAction(hero, enemy4);
+
+                enemy3.Update(gameTime);
+                enemy4.Update(gameTime);
             }
+
             collisionManager.collisionAction(hero, enemy);
+            collisionManager.collisionAction(hero, enemy2);
             collisionManager.collisionAction(hero, key);
-            //collisionManager.collisionAction(hero, key2);
+            collisionManager.collisionAction(hero, key2);
 
             collisionManager.collisionAction(hero, door);
             door.Update(gameTime);
 
-            //collisionManager.collisionAction(hero, enemy2);
-
+            collisionManager.collisionAction(hero, enemy2);
 
             hero.Update(gameTime);
             enemy.Update(gameTime);
@@ -178,6 +199,7 @@ namespace ProjectGameDev
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
             _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            _spriteBatch.Draw(titleTexture, new Vector2(0, 0), Color.White);
             _spriteBatch.End();
 
             if (gameState == GameState.Start)
@@ -186,13 +208,13 @@ namespace ProjectGameDev
             }
             if (gameState == GameState.Game)
             {
-                
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                _spriteBatch.End();
                 if (CollisionManager.hasAccessLevelTwo)
                 {
-                    //LoadNextLevel();
-                    Initialize();
-                    InitializeGameObjects();
-                    LoadContent();
+                    
                     CollisionManager.hasKeyTwo = false;
                     _spriteBatch.Begin(SpriteSortMode.Deferred,
                      BlendState.AlphaBlend,
@@ -205,15 +227,22 @@ namespace ProjectGameDev
                    // GraphicsDevice.Clear(Color.CornflowerBlue);
                     _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
 
+
+                    
                     _spriteBatch.End();
-                    _spriteBatch.Begin();
+                     LoadNextLevel();
+                    Initialize();
+                    LoadContent();
+                    _spriteBatch.Begin(SpriteSortMode.Deferred,
+                      BlendState.AlphaBlend,
+                      null, null, null, null,
+                      camera.transform);
+                    level2.DrawWorld(_spriteBatch);
                     key.Draw(_spriteBatch);
                     key2.Draw(_spriteBatch);
                     door.Draw(_spriteBatch);
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
-                    level2.DrawWorld(_spriteBatch);
-                    Update(gameTime);
 
                     _spriteBatch.End();
                 }
@@ -227,11 +256,11 @@ namespace ProjectGameDev
               camera.transform);
 
                     key.Draw(_spriteBatch);
-                    //key2.Draw(_spriteBatch);
+                    key2.Draw(_spriteBatch);
                     door.Draw(_spriteBatch);
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
-                    //enemy2.Draw(_spriteBatch);
+                    enemy2.Draw(_spriteBatch);
                     level.DrawWorld(_spriteBatch);
                     _spriteBatch.End();
                 }
@@ -241,9 +270,18 @@ namespace ProjectGameDev
             
             if (gameState == GameState.Uitleg)
             {
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                _spriteBatch.Draw(uitlegTexture, new Vector2(0, 0), Color.White);
+                _spriteBatch.End();
             }
             if (gameState == GameState.Dead)
             {
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                _spriteBatch.Draw(deadTexture, new Vector2(0, 0), Color.White);
+                _spriteBatch.End();
             }
             if (gameState == GameState.Pause)
             {

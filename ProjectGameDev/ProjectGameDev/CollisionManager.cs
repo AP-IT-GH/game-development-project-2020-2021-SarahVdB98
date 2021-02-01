@@ -112,6 +112,13 @@ namespace ProjectGameDev
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < enemy.CollisionRectangle.Y)
                 {
+                    if (hasAccessLevelTwo)
+                    {
+                        if (enemy == Game1.enemy2)
+                        {
+                            Game1.key2.positie = Game1.enemy2.positie;
+                        }
+                    }
                     collided = true;
                     hero.inputReader.canMoveUp = true;
                     Hero.IsGrounded = true;
@@ -170,21 +177,43 @@ namespace ProjectGameDev
         }
 
         public void collisionAction(Hero hero, Key key)
+        {
+            if (CheckCollision(hero.CollisionRectangle, key.CollisionRectangle))
             {
-                if (CheckCollision(hero.CollisionRectangle, key.CollisionRectangle))
-                {
 
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < key.CollisionRectangle.Y)
                 {
                     if (!hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X, 70);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyOne = true;
                     }
-                    else
+                    else if (hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X + 50, 72);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyTwo = true;
                     }
 
@@ -195,12 +224,34 @@ namespace ProjectGameDev
                 {
                     if (!hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X, 70);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyOne = true;
                     }
-                    else
+                    else if (hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X + 50, 72);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyTwo = true;
                     }
                 }
@@ -209,12 +260,34 @@ namespace ProjectGameDev
                 {
                     if (!hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X, 70);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyOne = true;
                     }
-                    else
+                    else if (hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X + 50, 72);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyTwo = true;
                     }
                 }
@@ -222,20 +295,41 @@ namespace ProjectGameDev
                 {
                     if (!hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X, 70);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyOne = true;
                     }
-                    else
+                    else if (hasKeyOne)
                     {
-                        key.positie = new Vector2(hero.positie.X + 50, 72);
+                        if (key == Game1.key)
+                        {
+                            Game1.key.positie.X = hero.positie.X - 360;
+
+                            Game1.key.positie.Y = 70;
+                        }
+                        if (key == Game1.key2)
+                        {
+                            Game1.key2.positie.X = hero.positie.X - 300;
+
+                            Game1.key2.positie.Y = 72;
+                        }
                         hasKeyTwo = true;
                     }
                 }
             }
 
 
-            }
-        
+        }
+
 
         public bool CheckCollision(Rectangle rect1, Rectangle rect2)
         {
