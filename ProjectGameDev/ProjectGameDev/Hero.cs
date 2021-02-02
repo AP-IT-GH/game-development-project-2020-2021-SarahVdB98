@@ -86,7 +86,7 @@ namespace ProjectGameDev
             {
                 Game1.key2.positie.X = positie.X - 300;
             }
-            if (positie.Y < -60) { positie.Y = -60; }
+            if (positie.Y < -30) { positie.Y = -30; }
 
                 if (positie.Y < 700)
             {

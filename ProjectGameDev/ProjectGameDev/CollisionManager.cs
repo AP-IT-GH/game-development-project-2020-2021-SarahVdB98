@@ -34,7 +34,7 @@ namespace ProjectGameDev
                             }
                             //als je er niet bovenop staat
                             //rechts ertegen
-                            else if (hero.CollisionRectangle.X > level.blokArray[x, y].CollisionRectangle.X+20)
+                            else if (hero.CollisionRectangle.X + 30 > level.blokArray[x, y].CollisionRectangle.X+20)
                             {
                                 collided = true;
                                 hero.inputReader.canMoveUp = false;
@@ -214,7 +214,6 @@ namespace ProjectGameDev
         {
             if (CheckCollision(hero.CollisionRectangle, key.CollisionRectangle))
             {
-
                 //als je erbovenop staat
                 if (hero.CollisionRectangle.Y + 85 < key.CollisionRectangle.Y)
                 {

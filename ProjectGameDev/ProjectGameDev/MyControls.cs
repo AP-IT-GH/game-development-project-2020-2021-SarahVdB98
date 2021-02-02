@@ -8,9 +8,9 @@ namespace ProjectGameDev
 {
     //https://www.youtube.com/watch?v=N9whx5Cozog
 
-    public class MyControls : ControlManager
+    class MyControls : ControlManager
     {
-        public MyControls(Game game) : base (game)
+        public MyControls(Game game) : base(game)
         {
 
         }
@@ -32,7 +32,7 @@ namespace ProjectGameDev
                 Text = "UITLEG",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(450, (GraphicsDeviceManager.DefaultBackBufferWidth / 2)-70)
+                Location = new Vector2(450, (GraphicsDeviceManager.DefaultBackBufferWidth / 2) - 70)
             };
             btn2.Clicked += Btn2_Clicked;
             Controls.Add(btn2);
@@ -58,7 +58,6 @@ namespace ProjectGameDev
                 BackgroundColor = Color.Transparent,
                 Location = new Vector2(10, 10),
                 IsVisible = false
-                
 
             };
             btn4.Clicked += Btn4_Clicked;
@@ -69,7 +68,7 @@ namespace ProjectGameDev
                 Text = "CONTINUE",
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
-                Location = new Vector2(850, 15),
+                Location = new Vector2(850, 165),
                 IsVisible = false
 
             };
@@ -82,13 +81,22 @@ namespace ProjectGameDev
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
                 Location = new Vector2(850, 90),
-                IsVisible = false,
-               
-        };
+                IsVisible = false
+            };
             btn6.Clicked += Btn6_Clicked;
             Controls.Add(btn6);
 
-                   }
+            var btn7 = new Button()
+            {
+                Text = "RESTART",
+                Size = new Vector2(200, 50),
+                BackgroundColor = Color.ForestGreen,
+                Location = new Vector2(850, 15),
+                IsVisible = false
+            };
+            btn7.Clicked += Btn7_Clicked;
+            Controls.Add(btn7);
+        }
 
         private void Btn1_Clicked(object sender, EventArgs e)
         {
@@ -100,6 +108,7 @@ namespace ProjectGameDev
             Controls[3].IsVisible = true;
             Controls[4].IsVisible = false;
             Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
 
         }
 
@@ -114,13 +123,14 @@ namespace ProjectGameDev
             Controls[3].IsVisible = false;
             Controls[4].IsVisible = false;
             Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
 
         }
 
         private void Btn3_Clicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-           
+
             Game1.gameState = GameState.Start;
             Controls[0].IsVisible = true;
             Controls[1].IsVisible = true;
@@ -128,24 +138,39 @@ namespace ProjectGameDev
             Controls[3].IsVisible = false;
             Controls[4].IsVisible = false;
             Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
 
         }
 
         private void Btn4_Clicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            Game1.gameState = GameState.Pause;
-            Controls[0].IsVisible = false;
-            Controls[1].IsVisible = false;
-            Controls[2].IsVisible = false;
-            Controls[3].IsVisible = false;
-            Controls[4].IsVisible = true;
-            Controls[5].IsVisible = true;
+
+            if (Game1.gameState == GameState.Dead || Game1.gameState == GameState.Finished)
+            {
+                Controls[0].IsVisible = false;
+                Controls[1].IsVisible = false;
+                Controls[2].IsVisible = false;
+                Controls[3].IsVisible = false;
+                Controls[4].IsVisible = false;
+                Controls[5].IsVisible = true;
+                Controls[6].IsVisible = true;
+            }
+            else
+            {
+                Controls[0].IsVisible = false;
+                Controls[1].IsVisible = false;
+                Controls[2].IsVisible = false;
+                Controls[3].IsVisible = false;
+                Controls[4].IsVisible = true;
+                Controls[5].IsVisible = true;
+                Controls[6].IsVisible = true;
+            }
+
         }
         private void Btn5_Clicked(object sender, EventArgs e)
         {
             Button btn = sender as Button;
-            
             Game1.gameState = GameState.Game;
             Controls[0].IsVisible = false;
             Controls[1].IsVisible = false;
@@ -153,6 +178,7 @@ namespace ProjectGameDev
             Controls[3].IsVisible = true;
             Controls[4].IsVisible = false;
             Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
 
         }
 
@@ -165,9 +191,23 @@ namespace ProjectGameDev
             Controls[3].IsVisible = true;
             Controls[4].IsVisible = false;
             Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
             Game1.gameState = GameState.End;
         }
 
+        private void Btn7_Clicked(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            Game1.gameState = GameState.Restart;
+            Controls[0].IsVisible = true;
+            Controls[1].IsVisible = true;
+            Controls[2].IsVisible = false;
+            Controls[3].IsVisible = false;
+            Controls[4].IsVisible = false;
+            Controls[5].IsVisible = false;
+            Controls[6].IsVisible = false;
+
+        }
 
     }
 }

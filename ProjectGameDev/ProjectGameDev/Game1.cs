@@ -14,12 +14,12 @@ public enum GameState
 {
     Start,
     Uitleg,
-    Pause,
     Game,
     ClearLevel,
     Dead,
     Finished,
-    End
+    End,
+    Restart
 }
 
 namespace ProjectGameDev
@@ -135,7 +135,6 @@ namespace ProjectGameDev
 
         protected override void Update(GameTime gameTime)
         {
-            
 
             if (CollisionManager.hasKeyTwo)
             {
@@ -242,7 +241,7 @@ namespace ProjectGameDev
                 {
                     if (!isDrawnLvlTwo)
                     {
-                        Content.Unload();
+                        GraphicsDevice.Clear(Color.CornflowerBlue);
                         Initialize();
                         LoadContent();
                         isDrawnLvlTwo = true;
@@ -283,6 +282,26 @@ namespace ProjectGameDev
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 _spriteBatch.Draw(finishedTexture, new Vector2(0, 0), Color.White);
                 _spriteBatch.End();
+            }
+            if (gameState == GameState.Restart)
+            {
+                CollisionManager.hasAccessLevelTwo = false;
+                CollisionManager.hasAccessLevelEnd = false;
+                _spriteBatch.Begin();
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                _spriteBatch.End();
+
+                        Initialize();
+                        LoadContent();
+                        isDrawnLvlTwo = true;
+                        _spriteBatch.Begin();
+                        _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                        _spriteBatch.End();
+                        CollisionManager.hasKeyOne = false;
+                        CollisionManager.hasKeyTwo = false;                    
+                
+                
             }
 
             if (gameState == GameState.End)
