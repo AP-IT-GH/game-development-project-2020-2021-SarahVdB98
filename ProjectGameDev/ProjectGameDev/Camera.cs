@@ -22,22 +22,10 @@ namespace ProjectGameDev
 
         public void Update(GameTime gameTime, Hero trump)
         {
-            if (CollisionManager.hasAccessLevelTwo)
-            {
-                if (center.X >= 3661)
-                {
-                    trump.positie = new Vector2(150, 577);
-                }
                 center = new Vector2(trump.positie.X + (trump.CollisionRectangle.Width / 2) - 400, 0);
                 transform = Matrix.CreateScale(new Vector3(1, 1, 0)) *
                     Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0));
-            }
-            else
-            {
-                center = new Vector2(trump.positie.X + (trump.CollisionRectangle.Width / 2) - 400, 0);
-                transform = Matrix.CreateScale(new Vector3(1, 1, 0)) *
-                    Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0));
-            }
+            
         }
     }
 }

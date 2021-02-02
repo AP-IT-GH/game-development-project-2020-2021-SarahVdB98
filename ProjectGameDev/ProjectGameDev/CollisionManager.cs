@@ -14,6 +14,8 @@ namespace ProjectGameDev
         public static bool hasKeyOne = false;
         public static bool hasKeyTwo = false;
         public static bool hasAccessLevelTwo = false;
+
+        public static bool hasAccessLevelEnd = false;
         public void collisionAction( Level level, Hero hero)
         {
             for (int x = 0; x < Level.rows; x++)
@@ -87,7 +89,7 @@ namespace ProjectGameDev
                             else if (hero.CollisionRectangle.X + 30 < level.blokArray2[x, y].CollisionRectangle.X)
                             {
                                 collided = true;
-                                //hero.inputReader.canMoveRight = false;
+                                hero.inputReader.canMoveRight = false;
                                 hero.inputReader.canMoveUp = true;
                             }
                             // als je eronder zit
@@ -154,23 +156,51 @@ namespace ProjectGameDev
                     //als je erbovenop staat
                     if (hero.CollisionRectangle.Y + 85 < door.CollisionRectangle.Y)
                     {
-                        hasAccessLevelTwo = true;
+                        if (hasAccessLevelTwo)
+                        {
+                            hasAccessLevelEnd = true;
+                        }
+                        else
+                        {
+                            hasAccessLevelTwo = true;
+                        }
                     }
                     //als je er niet bovenop staat
                     //rechts ertegen
                     else if (hero.CollisionRectangle.X + 80 > door.CollisionRectangle.X)
                     {
-                        hasAccessLevelTwo = true;
+                        if (hasAccessLevelTwo)
+                        {
+                            hasAccessLevelEnd = true;
+                        }
+                        else
+                        {
+                            hasAccessLevelTwo = true;
+                        }
                     }
                     //links ertegen
                     else if (hero.CollisionRectangle.X + 80 < door.CollisionRectangle.X)
                     {
-                        hasAccessLevelTwo = true;
+                        if (hasAccessLevelTwo)
+                        {
+                            hasAccessLevelEnd = true;
+                        }
+                        else
+                        {
+                            hasAccessLevelTwo = true;
+                        }
                     }
                     // als je eronder zit
                     if (hero.CollisionRectangle.Y > door.CollisionRectangle.Y)
                     {
-                        hasAccessLevelTwo = true;
+                        if (hasAccessLevelTwo)
+                        {
+                            hasAccessLevelEnd = true;
+                        }
+                        else
+                        {
+                            hasAccessLevelTwo = true;
+                        }
                     }
                 }
             }

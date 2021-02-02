@@ -19,10 +19,7 @@ namespace ProjectGameDev
         Vector2 origin = new Vector2(0,0);
         public Rectangle rect;
         public Rectangle CollisionRectangle { get; set; }
-        private Rectangle _collisionRectangle;
-
-        bool right;
-        
+        private Rectangle _collisionRectangle;        
 
         public Enemy(Texture2D texture , Vector2 vector2)
         {
@@ -34,24 +31,16 @@ namespace ProjectGameDev
         }
         public void Update(GameTime gameTime)
         {
-           
-            Debug.WriteLine(positie);
-
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;
             _collisionRectangle.Width = 25;
             _collisionRectangle.Height = 25;
             CollisionRectangle = _collisionRectangle;
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-
                 spriteBatch.Draw(enemyTexture, positie, null, Color.White, 0, origin, 0.1f, SpriteEffects.None, 0);
-            
-
         }
 
 
