@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/../../../../../../Videos/Captures/ProjectGameDev 2021-01-31 21-00-27 - kopie.mov</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/6-63763_politics-kim-jong-un-kim-jong-un-png.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background2.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background3.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background4.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/blok.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/DefaultFont.spritefont</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/dood.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/door-closed.gif</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/door-open.jpg</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/end.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/key.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/RunningForPresident.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/trump_iddle.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/trump_walk.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/uitleg.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/uitleg2.png</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/uitleg3.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File>ProjectGameDev 2021-01-31 21-00-27 - kopie.mov</File>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
