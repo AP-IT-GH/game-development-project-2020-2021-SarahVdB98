@@ -34,15 +34,18 @@ namespace ProjectGameDev
                             }
                             //als je er niet bovenop staat
                             //rechts ertegen
-                            else if (hero.CollisionRectangle.X + 30 > level.blokArray[x, y].CollisionRectangle.X)
+                            else if (hero.CollisionRectangle.X > level.blokArray[x, y].CollisionRectangle.X+20)
                             {
                                 collided = true;
+                                hero.inputReader.canMoveUp = false;
                                 hero.inputReader.canMoveLeft = false;
                             }
                             //links ertegen
-                            else if (hero.CollisionRectangle.X + 30 < level.blokArray[x, y].CollisionRectangle.X)
+                            else if (hero.CollisionRectangle.X + 30 < level.blokArray[x, y].CollisionRectangle.X-20)
                             {
                                 collided = true;
+
+                                hero.inputReader.canMoveUp = false;
                                 hero.inputReader.canMoveRight = false;
                             }
                             // als je eronder zit
@@ -53,6 +56,7 @@ namespace ProjectGameDev
                                 hero.positie.Y = level.blokArray[x, y].CollisionRectangle.Bottom;
                                 KeyBoardReader.Velocity.Y = 0.1f;
                             }
+                            
                         }
 
                     }
@@ -116,9 +120,9 @@ namespace ProjectGameDev
                 {
                     if (hasAccessLevelTwo)
                     {
-                        if (enemy == Game1.enemy2)
+                        if (enemy == Game1.enemy3)
                         {
-                            Game1.key2.positie = Game1.enemy2.positie;
+                            Game1.key2.positie = Game1.enemy3.positie;
                         }
                     }
                     collided = true;

@@ -25,8 +25,10 @@ namespace ProjectGameDev.Input
                 if (canMoveLeft)
                 {
                     direction = new Vector2(-1, 0);
+
                 }
                 canMoveLeft = true;
+                canMoveUp = true;
             }
             if (state.IsKeyDown(Keys.Right))
             {
@@ -34,7 +36,8 @@ namespace ProjectGameDev.Input
                 {
                     direction = new Vector2(1, 0);
                 }
-                canMoveRight = true;                
+                canMoveRight = true;
+                canMoveUp = true;
             }
 
             if (state.IsKeyDown(Keys.Space) && Hero.IsGrounded)

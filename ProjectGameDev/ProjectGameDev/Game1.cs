@@ -18,6 +18,7 @@ public enum GameState
     Game,
     ClearLevel,
     Dead,
+    Finished,
     End
 }
 
@@ -35,14 +36,15 @@ namespace ProjectGameDev
         private Texture2D doorTexture;
         private Texture2D titleTexture;
         private Texture2D uitlegTexture;
+        private Texture2D finishedTexture;
         public static GameState gameState;
         bool isDrawnLvlTwo = false;
 
         Hero hero;
         
         Enemy enemy;
-        public static Enemy enemy2;
-        Enemy enemy3;
+        Enemy enemy2;
+        public static Enemy enemy3;
         Enemy enemy4;
         Level level;
         Level2 level2;
@@ -97,6 +99,7 @@ namespace ProjectGameDev
             titleTexture = Content.Load<Texture2D>("RunningForPresident");
             uitlegTexture = Content.Load<Texture2D>("uitleg3");
             deadTexture = Content.Load<Texture2D>("dood");
+            finishedTexture = Content.Load<Texture2D>("end");
 
 
 
@@ -121,6 +124,7 @@ namespace ProjectGameDev
                 enemy2 = new Enemy(enemyTexture, new Vector2(1050, 566));
                 enemy3 = new Enemy(enemyTexture, new Vector2(1150, 566));
                 enemy4 = new Enemy(enemyTexture, new Vector2(1250, 566));
+                door = new Door(doorTexture, new Vector2(4000, 570));
                 key = new Key(keyTexture, new Vector2(830, 80));
                 key2 = new Key(keyTexture, new Vector2(-100, -100));
             }
@@ -131,6 +135,8 @@ namespace ProjectGameDev
 
         protected override void Update(GameTime gameTime)
         {
+            
+
             if (CollisionManager.hasKeyTwo)
             {
                 doorTexture = Content.Load<Texture2D>("door-open");
@@ -227,7 +233,7 @@ namespace ProjectGameDev
             {
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-                _spriteBatch.Draw(deadTexture, new Vector2(0, 0), Color.White);
+                _spriteBatch.Draw(deadTexture, new Vector2(0, 0), Color.White);                
                 _spriteBatch.End();
             }
             if (gameState == GameState.ClearLevel)
@@ -258,9 +264,9 @@ namespace ProjectGameDev
                     enemy3.Draw(_spriteBatch);
                     enemy4.Draw(_spriteBatch);
                     _spriteBatch.End();
-                    if (CollisionManager.hasAccessLevelTwo && CollisionManager.hasKeyTwo)
+                    if (CollisionManager.hasAccessLevelTwo && CollisionManager.hasAccessLevelEnd)
                     {
-                        gameState = GameState.End;
+                        gameState = GameState.Finished;
                     }
                     else
                     {
@@ -269,6 +275,14 @@ namespace ProjectGameDev
                     }
 
                 }
+            }
+            if (gameState == GameState.Finished)
+            {
+                _spriteBatch.Begin();
+                GraphicsDevice.Clear(Color.CornflowerBlue);
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+                _spriteBatch.Draw(finishedTexture, new Vector2(0, 0), Color.White);
+                _spriteBatch.End();
             }
 
             if (gameState == GameState.End)

@@ -14,6 +14,7 @@
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/dood.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/door-closed.gif</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/door-open.jpg</File>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/end.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/key.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/RunningForPresident.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/trump_iddle.png</File>
@@ -24,6 +25,7 @@
   </SourceFiles>
   <DestFiles>
     <File>ProjectGameDev 2021-01-31 21-00-27 - kopie.mov</File>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

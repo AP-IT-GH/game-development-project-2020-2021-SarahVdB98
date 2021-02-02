@@ -8,7 +8,7 @@ namespace ProjectGameDev
 {
     //https://www.youtube.com/watch?v=N9whx5Cozog
 
-    class MyControls : ControlManager
+    public class MyControls : ControlManager
     {
         public MyControls(Game game) : base (game)
         {
@@ -58,6 +58,7 @@ namespace ProjectGameDev
                 BackgroundColor = Color.Transparent,
                 Location = new Vector2(10, 10),
                 IsVisible = false
+                
 
             };
             btn4.Clicked += Btn4_Clicked;
@@ -81,8 +82,9 @@ namespace ProjectGameDev
                 Size = new Vector2(200, 50),
                 BackgroundColor = Color.ForestGreen,
                 Location = new Vector2(850, 90),
-                IsVisible = false
-            };
+                IsVisible = false,
+               
+        };
             btn6.Clicked += Btn6_Clicked;
             Controls.Add(btn6);
 

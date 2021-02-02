@@ -59,3 +59,4 @@ C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\Pr
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\ProjectGameDev 2021-01-31 21-00-27 - kopie.WMV
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\ProjectGameDev 2021-01-31 21-00-27 - kopie.xnb
 C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\ProjectGameDev 2021-01-31 21-00-27 - kopie.mov
+C:\Users\sarah\Documents\Github\game-development-project-2020-2021-SarahVdB98\ProjectGameDev\ProjectGameDev\bin\Debug\netcoreapp3.1\Content\end.xnb
