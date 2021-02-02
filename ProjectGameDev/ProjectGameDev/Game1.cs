@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using ProjectGameDev.Input;
 using ProjectGameDev.Interfaces;
 using ProjectGameDev.LevelDesign;
@@ -38,6 +39,7 @@ namespace ProjectGameDev
 
 
         Hero hero;
+        
         Enemy enemy;
         public static Enemy enemy2;
         Enemy enemy3;
@@ -58,6 +60,7 @@ namespace ProjectGameDev
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             this.Components.Add(new MyControls(this));
+            
         }
 
         protected override void Initialize()
@@ -65,33 +68,22 @@ namespace ProjectGameDev
             // TODO: Add your initialization logic here
             collisionManager = new CollisionManager();
             camera = new Camera(GraphicsDevice.Viewport);
+
             gameState = new GameState();
 
-            if (CollisionManager.hasAccessLevelTwo)
-            {
-                level2 = new Level2(Content);
-                level2.CreateWorld();
-            }
-            else
-            {
-                level = new Level(Content);
-                level.CreateWorld();
-            }
+            level = new Level(Content);
+            level.CreateWorld();
+
+            level2 = new Level2(Content);
+            level2.CreateWorld();
+           
+          
 
             base.Initialize();
         }
-
-        private void LoadNextLevel()
-        {
-            // Unloads the content for the current level before loading the next one.
-            if (level != null)
-                Content.Unload();
-
-            level2 = new Level2(Content);
-        }
-
         protected override void LoadContent()
         {
+           
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             if (!CollisionManager.hasAccessLevelTwo)
             {
@@ -113,34 +105,33 @@ namespace ProjectGameDev
 
         private void InitializeGameObjects()
         {
-            if (CollisionManager.hasAccessLevelTwo)
-            {
+           
 
-                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 550));
-                enemy = new Enemy(enemyTexture, new Vector2(561, 566));
-                enemy2 = new Enemy(enemyTexture, new Vector2(1050, 566));
-                enemy3 = new Enemy(enemyTexture, new Vector2(561, 566));
-                enemy4 = new Enemy(enemyTexture, new Vector2(2155, 566));
-                key = new Key(keyTexture, new Vector2(830, 80));
-                key2 = new Key(keyTexture, new Vector2(2040, 45));
-                door = new Door(doorTexture, new Vector2(4096, 577));
-            }
-            else
-            {
-
-                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150,584f));
+                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150,584));
                 enemy = new Enemy(enemyTexture, new Vector2(945, 181));
                 enemy2 = new Enemy(enemyTexture, new Vector2(2155, 566));
                 key = new Key(keyTexture, new Vector2(870, 220));
                 key2 = new Key(keyTexture, new Vector2(2040, 45));
                 door = new Door(doorTexture, new Vector2(4096, 577));
 
+            if (CollisionManager.hasAccessLevelTwo)
+            {
+                hero = new Hero(texture, new KeyBoardReader(), new Vector2(150, 577));
+                enemy = new Enemy(enemyTexture, new Vector2(561, 566));
+                enemy2 = new Enemy(enemyTexture, new Vector2(1050, 566));
+                enemy3 = new MovingEnemy(enemyTexture, new Vector2(561, 566));
+                enemy4 = new Enemy(enemyTexture, new Vector2(2155, 566));
+                key = new Key(keyTexture, new Vector2(830, 80));
+                key2 = new Key(keyTexture, new Vector2(2040, 45));
             }
+
+
         }
 
 
         protected override void Update(GameTime gameTime)
         {
+            CollisionManager.hasKeyTwo = true;
             if (CollisionManager.hasKeyTwo)
             {
                 doorTexture = Content.Load<Texture2D>("door-open");
@@ -148,7 +139,7 @@ namespace ProjectGameDev
             }
             if (CollisionManager.hasAccessLevelTwo)
             {
-                gameState = GameState.Game;
+                //gameState = GameState.Game;
                
             }
 
@@ -162,12 +153,8 @@ namespace ProjectGameDev
             if (CollisionManager.hasAccessLevelTwo)
             {
                 collisionManager.collisionAction(level2, hero);
-
-                collisionManager.collisionAction(hero, enemy);
-                collisionManager.collisionAction(hero, enemy2);
                 collisionManager.collisionAction(hero, enemy3);
                 collisionManager.collisionAction(hero, enemy4);
-
                 enemy3.Update(gameTime);
                 enemy4.Update(gameTime);
             }
@@ -182,14 +169,14 @@ namespace ProjectGameDev
 
             collisionManager.collisionAction(hero, enemy2);
 
-            hero.Update(gameTime);
+
+           
             enemy.Update(gameTime);
             enemy2.Update(gameTime);
             camera.Update(gameTime, hero);
             key.Update(gameTime);
             key2.Update(gameTime);
-            
-
+            hero.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -202,55 +189,34 @@ namespace ProjectGameDev
             _spriteBatch.Draw(titleTexture, new Vector2(0, 0), Color.White);
             _spriteBatch.End();
 
-            if (gameState == GameState.Start)
-            {
-                
-            }
+
             if (gameState == GameState.Game)
             {
+
                 GraphicsDevice.Clear(Color.CornflowerBlue);
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 _spriteBatch.End();
+
                 if (CollisionManager.hasAccessLevelTwo)
                 {
-                    
-                    CollisionManager.hasKeyTwo = false;
-                    _spriteBatch.Begin(SpriteSortMode.Deferred,
-                     BlendState.AlphaBlend,
-                     null, null, null, null,
-                     camera.transform);
-
-                   
-                    //_spriteBatch.Begin();
-
-                   // GraphicsDevice.Clear(Color.CornflowerBlue);
-                    _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-
-
-                    
-                    _spriteBatch.End();
-                     LoadNextLevel();
-                    Initialize();
                     LoadContent();
+                    InitializeGameObjects();
+
                     _spriteBatch.Begin(SpriteSortMode.Deferred,
                       BlendState.AlphaBlend,
                       null, null, null, null,
                       camera.transform);
+                    
+                    enemy3.Draw(_spriteBatch);
+                    enemy4.Draw(_spriteBatch);
                     level2.DrawWorld(_spriteBatch);
-                    key.Draw(_spriteBatch);
-                    key2.Draw(_spriteBatch);
-                    door.Draw(_spriteBatch);
-                    hero.Draw(_spriteBatch);
-                    enemy.Draw(_spriteBatch);
 
                     _spriteBatch.End();
                 }
 
-                else
-                {
 
-                    _spriteBatch.Begin(SpriteSortMode.Deferred,
+                _spriteBatch.Begin(SpriteSortMode.Deferred,
               BlendState.AlphaBlend,
               null, null, null, null,
               camera.transform);
@@ -261,13 +227,14 @@ namespace ProjectGameDev
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
                     enemy2.Draw(_spriteBatch);
+                if (!CollisionManager.hasAccessLevelTwo)
+                {
                     level.DrawWorld(_spriteBatch);
-                    _spriteBatch.End();
                 }
+                    _spriteBatch.End();
                 
-                
+
             }
-            
             if (gameState == GameState.Uitleg)
             {
                 GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -282,14 +249,6 @@ namespace ProjectGameDev
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 _spriteBatch.Draw(deadTexture, new Vector2(0, 0), Color.White);
                 _spriteBatch.End();
-            }
-            if (gameState == GameState.Pause)
-            {
-            }
-            if (gameState == GameState.Restart)
-            {
-                gameState = new GameState();
-                gameState = GameState.Start;
             }
             if (gameState == GameState.End)
             {

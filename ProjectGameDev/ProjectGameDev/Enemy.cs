@@ -1,10 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
+using System.Timers;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using ProjectGameDev.Animation;
 using ProjectGameDev.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace ProjectGameDev
@@ -14,15 +16,12 @@ namespace ProjectGameDev
         Texture2D enemyTexture;
 
         public Vector2 positie;
-        Vector2 origin;
-        Vector2 velocity;
+        Vector2 origin = new Vector2(0,0);
         public Rectangle rect;
         public Rectangle CollisionRectangle { get; set; }
         private Rectangle _collisionRectangle;
 
         bool right;
-        float distance;
-        float oldDistance;
         
 
         public Enemy(Texture2D texture , Vector2 vector2)
@@ -33,10 +32,10 @@ namespace ProjectGameDev
             rect.Height = 991;
             CollisionRectangle = new Rectangle((int)positie.X, (int)positie.Y, 10, 10);
         }
-        float mousedistance;
         public void Update(GameTime gameTime)
         {
-            positie += velocity;
+           
+            Debug.WriteLine(positie);
 
             _collisionRectangle.X = (int)positie.X;
             _collisionRectangle.Y = (int)positie.Y;

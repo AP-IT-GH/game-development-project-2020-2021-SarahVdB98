@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ProjectGameDev.LevelDesign
 {
-    class Level2 : Level
+    class Level2
     {
         public Texture2D texture;
         public Texture2D KJU;
@@ -45,7 +45,7 @@ namespace ProjectGameDev.LevelDesign
 
         private ContentManager content;
 
-        public Level2(ContentManager content) : base(content)
+        public Level2(ContentManager content)
         {
             this.content = content;
 

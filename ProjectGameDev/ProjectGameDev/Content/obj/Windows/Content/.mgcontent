@@ -4,6 +4,7 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/../../../../../../Videos/Captures/ProjectGameDev 2021-01-31 21-00-27 - kopie.mov</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/6-63763_politics-kim-jong-un-kim-jong-un-png.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background2.png</File>
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/background3.png</File>
@@ -22,6 +23,7 @@
     <File>C:/Users/sarah/Documents/Github/game-development-project-2020-2021-SarahVdB98/ProjectGameDev/ProjectGameDev/Content/uitleg3.png</File>
   </SourceFiles>
   <DestFiles>
+    <File>ProjectGameDev 2021-01-31 21-00-27 - kopie.mov</File>
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
