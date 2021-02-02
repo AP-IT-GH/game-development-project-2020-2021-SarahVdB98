@@ -16,6 +16,7 @@ public enum GameState
     Uitleg,
     Pause,
     Game,
+    ClearLevel,
     Dead,
     Restart,
     End
@@ -37,6 +38,8 @@ namespace ProjectGameDev
         private Texture2D uitlegTexture;
         public static GameState gameState;
 
+        bool isDrawnLvlOne = false;
+        bool isDrawnLvlTwo = false;
 
         Hero hero;
         
@@ -173,67 +176,52 @@ namespace ProjectGameDev
            
             enemy.Update(gameTime);
             enemy2.Update(gameTime);
-            camera.Update(gameTime, hero);
             key.Update(gameTime);
             key2.Update(gameTime);
             hero.Update(gameTime);
+            camera.Update(gameTime, hero);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
 
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-            _spriteBatch.Draw(titleTexture, new Vector2(0, 0), Color.White);
-            _spriteBatch.End();
+            //_spriteBatch.Begin();
+            //GraphicsDevice.Clear(Color.CornflowerBlue);
+            //_spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+            //_spriteBatch.Draw(titleTexture, new Vector2(0, 0), Color.White);
+            //_spriteBatch.End();
 
 
             if (gameState == GameState.Game)
             {
 
-                GraphicsDevice.Clear(Color.CornflowerBlue);
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
                 _spriteBatch.End();
 
-                if (CollisionManager.hasAccessLevelTwo)
+               
+                if (!CollisionManager.hasAccessLevelTwo)
                 {
-                    LoadContent();
-                    InitializeGameObjects();
-
-                    _spriteBatch.Begin(SpriteSortMode.Deferred,
-                      BlendState.AlphaBlend,
-                      null, null, null, null,
-                      camera.transform);
-                    
-                    enemy3.Draw(_spriteBatch);
-                    enemy4.Draw(_spriteBatch);
-                    level2.DrawWorld(_spriteBatch);
-
-                    _spriteBatch.End();
-                }
-
-
-                _spriteBatch.Begin(SpriteSortMode.Deferred,
-              BlendState.AlphaBlend,
-              null, null, null, null,
-              camera.transform);
-
+                    _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
                     key.Draw(_spriteBatch);
                     key2.Draw(_spriteBatch);
                     door.Draw(_spriteBatch);
                     hero.Draw(_spriteBatch);
                     enemy.Draw(_spriteBatch);
                     enemy2.Draw(_spriteBatch);
-                if (!CollisionManager.hasAccessLevelTwo)
-                {
-                    level.DrawWorld(_spriteBatch);
-                }
+                    isDrawnLvlOne = true;
                     _spriteBatch.End();
-                
 
+
+                }
+                else if(!isDrawnLvlTwo)
+                {
+                    gameState = GameState.ClearLevel;
+                }
+                _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
+                level.DrawWorld(_spriteBatch);
+                _spriteBatch.End();
             }
             if (gameState == GameState.Uitleg)
             {
@@ -250,6 +238,26 @@ namespace ProjectGameDev
                 _spriteBatch.Draw(deadTexture, new Vector2(0, 0), Color.White);
                 _spriteBatch.End();
             }
+            if (gameState == GameState.ClearLevel)
+            {
+                if (CollisionManager.hasAccessLevelTwo)
+                {
+                    _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.transform);
+                    enemy3.Draw(_spriteBatch);
+                    enemy4.Draw(_spriteBatch);
+                    level2.DrawWorld(_spriteBatch);
+                    key.Draw(_spriteBatch);
+                    key2.Draw(_spriteBatch);
+                    door.Draw(_spriteBatch);
+                    hero.Draw(_spriteBatch);
+                    enemy.Draw(_spriteBatch);
+                    enemy2.Draw(_spriteBatch);
+                    isDrawnLvlTwo = true;
+                    _spriteBatch.End();
+
+                }
+            }
+
             if (gameState == GameState.End)
             {
                 Exit();
